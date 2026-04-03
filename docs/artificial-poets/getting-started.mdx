@@ -1,0 +1,26 @@
+---
+title: Artificial Poets Quick Start
+description: Get your first Artificial Poets workspace and dashboard running.
+---
+
+This guide helps you set up an Artificial Poets workspace and open the main dashboard.  
+By the end you will have a local environment running and a browser pointed at the dashboard.
+
+## Before you begin
+
+You will need:
+
+- Access to the Artificial Poets dashboard (or local dev environment).
+- Node.js 18+ and Bun installed.
+- Docker running (for local databases, if you use the full stack).
+- Git access to the main monorepo.
+
+## 1. Clone and bootstrap the monorepo
+
+```bash
+git clone git@github.com:artificial-poets/monorepo.git
+cd monorepo
+
+# Install dependencies and run the bootstrap script
+bun install
+bash tooling/bootstrap.sh

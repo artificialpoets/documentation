@@ -1,0 +1,23 @@
+---
+title: PoeHost Quick Start
+description: Stand up your first PoeHost deployment and call its API.
+---
+
+This guide shows you how to run PoeHost locally and verify that the API and dashboard are reachable.
+
+## Before you begin
+
+Make sure you have:
+
+- A clone of the main monorepo.
+- Node.js 18+ and Bun installed.
+- Docker running (for Redis and databases, if required by PoeHost).
+- Basic familiarity with running `bun run` scripts.
+
+## 1. Start PoeHost services
+
+From the monorepo root, start the infrastructure and apps needed by PoeHost:
+
+```bash
+bun run infra          # databases and Redis
+bun run dev            # includes PoeHost API and dashboards

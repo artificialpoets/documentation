@@ -1,0 +1,38 @@
+---
+title: A13S Quick Start
+description: Get your first A13S project running in a few minutes.
+---
+
+This guide takes you from zero to a working A13S project in a few minutes.  
+By the end you will have a project created and an application calling the A13S API.
+
+## Before you begin
+
+Make sure you have:
+
+- An A13S account (with access to the dashboard).
+- An API key created in the A13S dashboard.
+- Node.js 18+ installed on your machine.
+- A terminal and a code editor.
+
+If you don’t have an API key yet, create one in the **A13S dashboard → Settings → API keys**.
+
+## 1. Create a new project
+
+1. Open the A13S dashboard.
+2. Go to **Projects**.
+3. Click **New project** and give it a name (for example `my-first-a13s-project`).
+4. Note down the **Project ID**; you will use it in your app.
+
+> **Tip**  
+> Keep different projects for staging and production. It makes it easier to separate data and configuration.
+
+## 2. Install the A13S SDK
+
+From an empty folder, initialize a Node.js project and install the SDK:
+
+```bash
+mkdir my-a13s-app
+cd my-a13s-app
+npm init -y
+npm install @a13s/sdk
