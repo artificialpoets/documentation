@@ -1,4 +1,12 @@
 {
     "title": "Artificial Poets",
-    "pages": ["getting-started", "guide/deploy"]
+    "pages": [
+        "quick-start",
+        "glossary",
+        "audience",
+        "content",
+        "engagement",
+        "performance",
+        "revenue"
+    ]
 }
