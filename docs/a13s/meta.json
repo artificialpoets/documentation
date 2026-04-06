@@ -1,5 +1,12 @@
 {
     "title": "A13S",
-    "pages": ["getting-started", "guide/deploy"]
+    "pages": [
+        "quick-start",
+        "glossary",
+        "audience",
+        "content",
+        "engagement",
+        "performance",
+        "revenue"
+    ]
 }
-
