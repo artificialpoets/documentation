@@ -1,11 +1,14 @@
 {
     "title": "Audience",
     "pages": [
+        "active-users",
         "acquisition",
+        "retention",
+        "intent",
+        "---",
         "traffic-channel",
         "unique-visitors",
         "dau",
-        "mau",
-        "retention"
+        "mau"
     ]
 }

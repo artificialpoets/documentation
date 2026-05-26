@@ -1,0 +1,57 @@
+---
+title: Active Users
+description: The Active Users page — counts of distinct users who took a meaningful action over a given window, with day-over-day and week-over-week comparisons.
+---
+
+The **Active Users** page is the simplest possible answer to "how many people are using the product." It counts distinct users who took at least one meaningful action — a pageview, a click, a scroll — inside a configurable time window.
+
+The page sits at the top of the Audience section because every other audience metric is a slice or a derivative of this one.
+
+### What "active" means
+
+A user is **active** on day D if they took at least one tracked action in the 24-hour window ending at the end of day D. The Platform counts users by their stable identity (a hashed cookie / device id), deduplicated across pages and sessions inside the window.
+
+A user who came back five times in one day counts as one active user that day. Two users on the same device — different cookies, same machine — count as two.
+
+### Three default windows
+
+The page shows three rolling counts side by side:
+
+| Window | What it is | Read it as |
+|--------|------------|------------|
+| **DAU** | [Daily active users](./dau) — active in the last 24 hours | Today's reach |
+| **WAU** | Weekly active users — active in the last 7 days | This week's reach |
+| **MAU** | [Monthly active users](./mau) — active in the last 30 days | This month's reach |
+
+Each is reported with a sparkline showing the last 90 days, and a delta vs. the previous equal-length window.
+
+### The stickiness ratio
+
+Below the three counts you'll see the **DAU/MAU ratio** — a single number between 0 and 1. It tells you what fraction of your monthly users are active on any given day.
+
+| DAU/MAU | Interpretation |
+|---------|----------------|
+| > 0.5 | Daily-use product (rare for news/content sites) |
+| 0.2 – 0.5 | Weekly-use product (typical for newsletter-driven sites) |
+| < 0.2 | Episodic-use (typical for news event-driven traffic) |
+
+A trend in this ratio is more informative than the raw counts. A growing audience with falling stickiness usually means new visitors are arriving but not coming back.
+
+### Filtering and segmentation
+
+The page supports the standard Audience filters at the top:
+
+- **Site** — restrict to one site or roll up across all
+- **Device** — phone, tablet, desktop
+- **Channel** — see [Traffic Channel](./traffic-channel) for the taxonomy
+- **Real-human bucket** — by default only `real human` sessions are counted; toggle to see uncertain or all
+
+The counts update live as filters change. Filter combinations that produce too few sessions for stable counts will display a "low-sample" badge.
+
+### What is *not* on this page
+
+- Per-article reach — that's [Content → Top inventory](../content/top-inventory).
+- New vs. returning split — that's [Retention](./retention), which slices Active Users by whether they appeared in earlier windows.
+- Acquisition channel composition over time — that's [Acquisition](./acquisition).
+
+This page answers the size question. Other pages answer the composition and behavior questions.

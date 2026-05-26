@@ -1,0 +1,23 @@
+{
+    "title": "Platform",
+    "pages": [
+        "overview",
+        "instances",
+        "models",
+        "real-humans",
+        "ingest",
+        "inference",
+        "storage",
+        "serving",
+        "observability",
+        "data-lake",
+        "data-warehouse",
+        "vector-store",
+        "embedding",
+        "reranker",
+        "recommender",
+        "intent-classifier",
+        "real-human-classifier",
+        "transcription"
+    ]
+}

@@ -9,17 +9,23 @@ This page is your map. Skim the section summaries below, then jump to the area t
 
 ## How the docs are organized
 
-The docs split into two halves: **analytics** (the five sections that mirror your dashboard tabs) and **workspace** (the admin features for managing your sites, team, and account).
+The docs split into three halves: the **engine** (how the underlying platform actually works), **analytics** (the five sections that mirror your dashboard tabs), and **workspace** (the admin features for managing your sites, team, and account).
+
+### Engine
+
+| Section | What it covers |
+|---|---|
+| [Platform](./platform/) | How the engine works end-to-end — connected sources, the eight model kinds in the catalog, the five infrastructure lanes (ingest, inference, storage, serving, observability), and the Real Human classifier that keeps your analytics honest. |
 
 ### Analytics
 
 | Section | What it covers |
 |---|---|
-| [Audience](./audience/) | Who's visiting — acquisition channels, active-user counts, returning visitors, retention. |
-| [Content](./content/) | What's being read — top pages, content classification by intent, device segmentation, bot traffic. |
+| [Audience](./audience/) | Who's visiting — active users, acquisition channels, returning visitors, retention, intent. |
 | [Engagement](./engagement/) | How people interact — sessions, pageviews, scroll depth, search behavior, bounce rate. |
-| [Performance](./performance/) | How fast your site feels — Core Web Vitals (LCP, FCP, INP, CLS), per-page breakdowns, SEO risk. |
 | [Revenue](./revenue/) | What converts — user journeys, high-intent content, sponsor opportunities. |
+| [Content](./content/) | What's being read — top pages, content classification by intent, search stats, device segmentation. |
+| [Performance](./performance/) | How fast your site feels — Core Web Vitals (LCP, FCP, INP, CLS), per-page breakdowns, SEO risk. |
 | [Glossary](./glossary) | Alphabetical index of every metric and term used in the dashboard. |
 
 ### Workspace
@@ -35,6 +41,7 @@ The docs split into two halves: **analytics** (the five sections that mirror you
 Pick the entry point that matches your role:
 
 - **"I'm new — show me around."** Read the [Audience overview](./audience/) and [Performance overview](./performance/). Together they answer "how many people are here and how does the site feel."
+- **"I want to understand the AI under the hood."** Open the [Platform](./platform/) section. [Platform Overview](./platform/overview) is the one-screen summary; [Instances](./platform/instances) is the live map of every component that powers your account.
 - **"I'm setting up a new site."** Open [Sites](./sites/) for the list view and the per-site [Settings](./sites/settings) tab.
 - **"I'm an editor or content strategist."** Start with [Content](./content/) and [Engagement](./engagement/). They surface which articles work and how readers move through them.
 - **"I'm responsible for site performance."** Jump to [Performance](./performance/) → [Core Web Vitals](./performance/core-web-vitals) and then [Traffic Loss Risk](./performance/traffic-loss-risk) to see what's costing you ranking.

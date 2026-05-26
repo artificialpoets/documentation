@@ -1,0 +1,52 @@
+---
+title: Platform Overview
+description: The four headline KPIs and the content-source registry that show the platform's state at a glance — total content, vectors stored, real-human share, and recs served per minute.
+---
+
+The **Platform → Overview** page is the one-screen summary of your account: how much content the platform has indexed, how much processing it has done, what share of your traffic is real humans, and how much serving load it is handling right now.
+
+If you only open one Platform page each week, open this one.
+
+### The four KPIs
+
+| KPI | What it counts | Why it matters |
+|-----|----------------|----------------|
+| **Total content** | The number of content items the platform has ingested across every source | A growing number is the simplest sign your sources are healthy |
+| **Vectors stored** | The count of [embeddings](./embedding) in the [vector store](./vector-store) | One per content item — should track total content closely |
+| **Real humans %** | The share of recent sessions classified as real humans by the [RHM model](./real-human-classifier) | A sudden drop usually means a bot wave hit the site |
+| **Recs served / min** | The platform's current recommendation throughput | Tells you the platform is keeping up with traffic in real time |
+
+The numbers refresh on every page load. Anything that has happened in the last few minutes is reflected here.
+
+### The customer band
+
+Next to the title you will see a colored badge — the **customer band**. The band reflects the size and complexity of your account and sets the defaults the platform uses for thresholds, retention windows, and serving SLAs. You can think of it as the platform's high-level configuration tier.
+
+You do not change your band from this page; bands move when the [Organization → Billing](../organization/billing) tier changes.
+
+### Your content, plugged in
+
+Below the KPIs is the **content source registry** — every connector you have configured, organized by media type. For each source you see:
+
+- A media badge — text, audio, or video
+- The connector status — **live**, **warming**, or **paused** (see [ingest](./ingest) for what each state means)
+- The last successful sync time
+- The number of items the platform has ingested from this source
+
+Sources are grouped by media type so you can see at a glance whether your text, audio, and video pipelines are all healthy.
+
+### When to drill down
+
+The Overview page is intentionally shallow. When you spot something worth investigating:
+
+- A KPI that looks off → open the page that drives it. Real-humans drop → [Real Humans](./real-humans). Recs/min drop → [Instances](./instances) to find which serving node is degraded.
+- A source showing as warming for hours → click into the source detail page to see ingest progress.
+- A new model the platform has rolled out → open [Models](./models) for the catalog.
+
+### What is *not* on this page
+
+- Per-site numbers — those live under [Sites](../sites).
+- Audience breakdowns — those live under [Audience](../audience).
+- Revenue or billing — those live under [Organization](../organization).
+
+This page answers "is the platform healthy and how much work is it doing right now." Everything else lives one click away.

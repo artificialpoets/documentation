@@ -1,0 +1,56 @@
+---
+title: Search Stats
+description: The Search Stats page — query volumes, click-through rates, and empty-result patterns from on-site search, with intent classification overlays.
+---
+
+The **Search Stats** page is the dashboard for what people are typing into your on-site search box. It is one of the most direct signals you have for what your audience is actually looking for — and one of the easiest to overlook.
+
+The page sits in the Content section because the answers are usually editorial: search queries reveal content gaps, naming mismatches, and topics worth covering.
+
+### The headline numbers
+
+The top of the page shows four counters for the selected time window:
+
+| Counter | What it counts |
+|---------|----------------|
+| **Total queries** | Every search submission, regardless of result count |
+| **Unique queries** | Distinct query strings, case-folded and trimmed |
+| **CTR** | [Click-through rate](../engagement/ctr) — share of queries with at least one result click |
+| **Empty-result rate** | Share of [empty-result searches](../engagement/empty-result-searches) — queries returning zero results |
+
+The CTR and empty-result rate together tell most of the story. High CTR + low empty rate = your search is finding what people want. Low CTR + low empty rate = search is returning results but they aren't what people wanted. Any empty rate = content gaps to chase.
+
+### The top-queries table
+
+Below the counters, the table lists the top queries by volume with per-query columns:
+
+- **CTR** — percentage of queries that produced a click
+- **Average position** of the clicked result (lower = result was closer to the top)
+- **Intent label** — from the [Intent classifier](../platform/intent-classifier): informational, navigational, transactional, investigational, or "unknown"
+- **Top clicked URL** — the most-clicked result for that query
+
+The table is sortable by any column. Sorting by intent reveals patterns you can act on — a stack of investigational queries at the top usually means people are comparing things; a stack of transactional ones means people want to buy.
+
+### Empty-result queries — the to-do list
+
+A separate panel lists the top empty-result queries. These are the most actionable rows on the page: every empty result is content your audience wanted that you didn't have. Common patterns:
+
+- **Synonym gaps** — a query for "review" returning nothing while "comparison" articles exist. Add the missing term.
+- **Topic gaps** — a query for something you've never written about. Brief the editorial team.
+- **Time-shift gaps** — a query that worked last quarter and stopped working this quarter because your articles aged out of date.
+
+### Search funnel conversion
+
+The page closes with the [search funnel conversion rate](../engagement/search-funnel-conversion-rate) — the share of search sessions that ended in a goal completion (signup, subscription, share, whatever your conversion goal is). Search is one of the highest-intent traffic sources you have; the conversion funnel here is usually the steepest in the Platform.
+
+### Where Search Stats connects to other pages
+
+- [Content → Content intent](./content-intent) — same intent labels, but applied to articles rather than queries
+- [Audience → Intent](../audience/intent) — same intent labels, but applied to the user's whole session
+- [Engagement → Search](../engagement/search) — search behavior viewed as engagement (depth, time-to-click) rather than content gap
+
+### What is *not* on this page
+
+- Off-site search referrals — that's the Acquisition view of organic search, not internal search.
+- Search ranking or SEO data — internal search and external (Google) search are different products; SEO lives outside the Platform.
+- Per-user query history — queries are aggregated; the Platform does not surface individual users' search histories.

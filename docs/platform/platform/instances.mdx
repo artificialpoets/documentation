@@ -1,0 +1,56 @@
+---
+title: Platform Instances
+description: The live infrastructure map — five lanes showing every connector, model, and serving endpoint running for your account, with their current health and load.
+---
+
+The **Platform → Instances** page is a flow diagram of the platform's running infrastructure as it works for your account right now. It is the most concrete view of what is actually happening between your content arriving and a recommendation reaching a reader.
+
+The diagram has two viewing modes — **Map** and **List** — toggled at the top of the page. Map mode is the conceptual model; List mode is the same data in a sortable table.
+
+### The five lanes
+
+The map is organized left-to-right into five lanes. Each lane represents one stage of the pipeline:
+
+| Lane | What runs there | Defined in |
+|------|-----------------|------------|
+| **Ingest** | Source connectors — one node per WordPress install, Acast feed, or Mux project | [ingest](./ingest) |
+| **Inference** | Running model jobs — one node per active model from the [catalog](./models) | [inference](./inference) |
+| **Storage** | The three stores — data lake, vector store, data warehouse | [storage](./storage) |
+| **Serving** | Public endpoints — API origins and embed CDN edges | [serving](./serving) |
+| **Observability** | Health collectors — the meta-layer watching the other four | [observability](./observability) |
+
+Edges between nodes show data flow. An edge from a WordPress connector to an embedding model means "this connector's articles get embedded by this model." An edge from a model to the vector store means "this model writes its outputs there."
+
+### Reading a node
+
+Click any node to open its detail drawer. You will see:
+
+- **Type** — connector, model, store, endpoint, or collector
+- **Status** — healthy, degraded, or down (color-coded on the map)
+- **Load** — requests per second or items per minute, depending on the node type
+- **Latency** — p50 / p95 / p99 response times
+- **Last error** — if any, with timestamp
+
+The same information is in List view, one row per node, sortable by load or latency. List view is better for spotting outliers; Map view is better for understanding what depends on what.
+
+### Filters
+
+The toolbar at the top lets you filter:
+
+- By **media type** — text, audio, video — to see only the slice of infrastructure handling that type
+- By **lane** — collapse the map down to one lane if you want focus
+- By **status** — show only degraded or down nodes during an incident
+
+Filters affect both Map and List view simultaneously.
+
+### Common reading patterns
+
+- **"Why are recommendations slow?"** — look at the Serving lane for high latency, then trace the upstream edges into Inference to find which model is the bottleneck.
+- **"Why did ingest stop?"** — Ingest lane. Look for nodes in degraded state and click into them; the last-error message usually tells you whether it is a source-side problem (expired API token) or a platform-side problem (downstream model full).
+- **"What is the platform actually doing for me right now?"** — Map view, no filters. The pulsing edges show real-time traffic; the node sizes scale with load.
+
+### What is *not* on this page
+
+- Historical trends — Instances is realtime. Trend graphs live on the [Overview](./overview) KPIs.
+- Per-piece-of-content lookups — the page shows infrastructure, not individual items. Click into a node and follow links into the source detail page if you need to drill down to a specific article or episode.
+- Model A/B variants — variants show up on [Models](./models) where they are easier to compare side-by-side.

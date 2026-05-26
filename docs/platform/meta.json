@@ -3,12 +3,14 @@
     "pages": [
         "welcome",
         "glossary",
-        "audience",
-        "content",
-        "engagement",
-        "performance",
-        "revenue",
+        "---",
         "sites",
+        "platform",
+        "audience",
+        "engagement",
+        "revenue",
+        "content",
+        "performance",
         "organization",
         "account-settings"
     ]

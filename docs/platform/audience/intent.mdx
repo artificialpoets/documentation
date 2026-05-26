@@ -1,0 +1,49 @@
+---
+title: Audience Intent
+description: The Audience Intent page — sessions grouped by their classified intent label, with conversion rates and content overlap by intent type.
+---
+
+The **Audience Intent** page groups your visitors by what they came to do. Every session that includes a search query or a meaningful navigation pattern gets a label from the [Intent classifier](../platform/intent-classifier): informational, navigational, transactional, or investigational.
+
+The page is most useful when you treat intent as a lens. The same audience-size number means very different things depending on whether it's mostly people researching a topic or mostly people about to convert.
+
+### What you see
+
+The page has three stacked panels:
+
+1. **Intent mix** — a stacked bar showing how the four intent labels split your sessions over time. A growing transactional slice usually correlates with a marketing push; a shrinking one is often a leading indicator for revenue.
+2. **Per-intent funnels** — for each intent type, the conversion rate from initial query → engaged session → goal completion. Lets you spot intent types that are arriving but not converting.
+3. **Top content by intent** — the articles, pages, and audio items most often consumed by each intent label. Useful for spotting which content does what work.
+
+### The four intent labels
+
+The platform's classifier emits one of four mutually exclusive labels per session. The boundaries are tuned for content/media use cases, not e-commerce:
+
+| Label | The user is trying to | Example signal |
+|-------|----------------------|----------------|
+| **Informational** | Learn about a topic | "how does X work" search; long-scroll on explainer content |
+| **Navigational** | Reach a specific page | Brand-name search; direct entry to a known URL |
+| **Transactional** | Take an action | "buy", "subscribe", "sign up" queries; click on a CTA |
+| **Investigational** | Compare options | "X vs Y", "best", "review" queries |
+
+Each label arrives with a **confidence score**. Sessions where the model's confidence is below the [min-confidence](../revenue/min-confidence) threshold are bucketed as "unknown" rather than mislabelled.
+
+### How intent connects to other sections
+
+Intent is one of the few signals that crosses section boundaries. You'll see it referenced from:
+
+- [Content → Search stats](../content/search-stats) — search queries broken down by intent
+- [Content → Content intent](../content/content-intent) — articles labelled by the intent type they best satisfy
+- [Revenue → Journey optimization](../revenue/journey-optimization) — conversion paths grouped by entry intent
+
+The Audience version of intent is the **inbound** view: who's arriving, what they want. The Content version is the **content** view: which articles each intent type consumes. The Revenue version is the **funnel** view: how each intent type converts.
+
+### Reading the mix
+
+The most common pattern: a flat informational slice (steady research traffic) with episodic spikes in transactional (campaign-driven) and investigational (product-launch-driven). If your investigational and transactional slices stay near zero, the platform is likely undersampling — probably because your queries are too thin to classify with confidence. The min-confidence threshold may need lowering for your account.
+
+### What is *not* on this page
+
+- Per-session timeline — that's the Revenue journey reports.
+- Intent of users *outside* the session window — intent is session-scoped; it does not roll up to user-level personas.
+- A manual labelling interface — labels come from the model, not from editorial tagging. If you want editorial intent metadata on articles, set it in your CMS and the platform will read it as a separate field.
