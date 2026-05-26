@@ -1,0 +1,20 @@
+{
+    "title": "Engagement",
+    "pages": [
+        "overview",
+        "pageview",
+        "total-pageviews",
+        "session",
+        "pageviews-per-session",
+        "average-session-duration",
+        "bounce-rate",
+        "scroll-depth",
+        "reading-stage",
+        "infinite-scroll",
+        "infinite-scroll-rate",
+        "search",
+        "ctr",
+        "search-funnel-conversion-rate",
+        "empty-result-searches"
+    ]
+}

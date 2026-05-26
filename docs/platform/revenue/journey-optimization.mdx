@@ -1,0 +1,49 @@
+---
+title: Journey Optimization
+description: How the Platform models user journeys as ordered step sequences and surfaces the drop-off points where revenue intent is lost.
+---
+
+**Journey optimization** treats each user's session as an ordered sequence of pageviews and asks where, along that sequence, revenue intent is created, sustained, or lost. The output is a structured view of drop-off points: specific steps where a measurable share of users left before the intent signal shifted from informational to commercial or transactional.
+
+### The model
+
+The Platform builds the journey from raw pageviews using a simple structure.
+
+| Concept | Definition |
+|---------|------------|
+| [Journey step](./journey-step) | A sequential position in a session — step 1 is the first pageview, step 2 the second, and so on |
+| [Users reached step](./users-reached-step) | The distinct user count whose journey extended to a given step — the denominator for per-step metrics |
+| [Intent progression](./intent-progression) | How the dominant search-intent mix shifts across sequential steps |
+| [Sample size](./sample-size) | Number of observations at a step — steps below the minimum are excluded from charts |
+| [minConfidence](./min-confidence) | Threshold (0–100) that filters out low-confidence intent classifications |
+
+A user who views 5 pages produces 5 entries — one at each step number from 1 through 5. The Platform aggregates across users at each step to compute the metrics shown in the reports.
+
+### What "drop-off" means
+
+Two drop-off patterns matter and are reported separately.
+
+- **Reach drop-off** — the share of users who reached step _N_ but not step _N+1_. This is the standard funnel metric. A sharp reach drop-off at step 2 means users are arriving and leaving after a single page.
+- **Intent drop-off** — the share of users at step _N_ whose dominant intent is informational, where the comparable step from a successful cohort shows commercial or transactional intent dominant. This is the more interesting signal because it surfaces journeys that didn't fail mechanically (the user did keep reading) but failed to evolve into conversion intent.
+
+### How intent shifts along a typical journey
+
+In a healthy monetized journey, intent shifts predictably:
+
+| Step range | Typical dominant intent |
+|------------|-------------------------|
+| 1–2 | Informational (user is learning) |
+| 3–5 | Informational, with commercial appearing |
+| 6+ | Commercial or transactional dominant |
+
+When this progression flattens — informational still dominant at step 8, 9, 10 — the editorial path is missing the content that would move users into commercial intent. The intent progression chart makes the flatness visible at a glance.
+
+### Reading the reports
+
+Pair reach drop-off with intent progression. A step that loses 40% of users but where the surviving 60% shifted into commercial intent is doing exactly what it should — concentrating the funnel. A step that retains 90% of users but where the intent mix is identical to the step before is the dead weight: users are reading but the content is not moving them.
+
+Always check [sample size](./sample-size) before drawing conclusions from deep steps. By step 8 the user count is often an order of magnitude smaller than at step 1, and small samples produce volatile intent percentages.
+
+### What to do with the output
+
+Each drop-off identified in this report is an editorial brief: add a step here, link from page X to page Y, surface commercial-intent content where currently only informational content lives. The Revenue section feeds these into the [`./high-intent-content`](./high-intent-content) view so editorial planning has both the diagnosis (what step failed) and the prescription (what kind of content the step needs).

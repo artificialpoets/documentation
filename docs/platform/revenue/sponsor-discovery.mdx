@@ -1,0 +1,54 @@
+---
+title: Sponsor Discovery
+description: How the Platform builds an audience-and-content profile of the site and matches it against potential sponsors for direct monetization deals.
+---
+
+**Sponsor discovery** helps publishers running direct sponsorship monetization — newsletter sponsorships, branded content, integrated campaigns, podcast reads — find the brands most likely to match their audience and content. It is not a programmatic ad-tech replacement; it is a sales pipeline tool, and its output is a prospect list with the reasoning behind each match.
+
+### The audience-and-content profile
+
+Before any matching happens, the Platform builds a structured profile of the site from the data the rest of the dashboard already produces.
+
+| Profile dimension | Source |
+|-------------------|--------|
+| Traffic channel mix | The Audience section's channel breakdown |
+| Audience size | Unique visitors, DAU, MAU |
+| Geographic distribution | Inferred from session geography |
+| Device split | Desktop / mobile share |
+| Content intent distribution | The Content section's per-page intent classification |
+| Top topics | Keyword and entity extraction from highest-performing pages |
+| Engagement profile | Site-wide bounce rate, session duration, scroll depth benchmarks |
+
+The profile updates continuously as the underlying data updates — it is not a one-time snapshot.
+
+### How matching works
+
+For each candidate sponsor in the brand database, the Platform computes a fit score across the profile dimensions above. The score is composed from:
+
+- **Audience overlap** — does the brand's typical buyer match the site's demographic and geographic distribution?
+- **Content adjacency** — does the brand sell into topics the site already covers?
+- **Intent compatibility** — does the brand sell products that match the commercial and transactional intent the site already attracts?
+- **Format fit** — does the brand run the kind of campaigns the site can host (display, sponsored content, newsletter, integrated)?
+
+Brands above a configurable fit threshold are returned as the prospect list.
+
+### The workflow
+
+The intended flow from profile to prospect to deal:
+
+1. **Open the audience profile.** Confirm it reflects the site as it actually is today — content emphasis, audience makeup, traffic channels.
+2. **Review the prospect list.** Each prospect carries the fit score and the dimensions that drove it. The reasoning is the most useful part for sales conversations.
+3. **Filter and shortlist.** Filter by budget tier (small brands vs. enterprise), by vertical, by campaign format. Shortlist the dozen most worth outreach.
+4. **Export the shortlist.** Hand off to the sales or partnerships team with the per-brand reasoning attached.
+
+### Signals that drive the match
+
+Three signals tend to dominate matches.
+
+- **Channel mix.** A site with 70% organic-search traffic matches brands that value SEO presence in the topic; a site with 60% direct and email matches brands that value brand-loyal audiences.
+- **Content intent.** A catalog dominated by commercial-intent reviews matches very different brands than a catalog dominated by informational explainers — both have value, but to different sponsors.
+- **Audience size at scale.** Brands set minimum-reach floors. The audience-size signal determines which tier of brand is even in scope.
+
+### What the list is not
+
+This is a list of prospects worth outreach, not a list of brands that will buy. Closing depends on factors the Platform cannot see — the brand's current campaign budget, their internal channel mix, their fiscal calendar, the strength of the outbound pitch. Use the list to focus sales effort, not to forecast revenue.

@@ -1,0 +1,43 @@
+---
+title: Web Vitals by Domain
+description: Domain-level Core Web Vitals — how to compare subdomains, country variants, and AMP versions, and what aggregation across pages of a domain reveals.
+---
+
+The **Web Vitals by Domain** view aggregates Core Web Vitals one row per registered domain on the account. For accounts running a single domain it is largely redundant with the overview. For multi-domain accounts — country variants, AMP versions, branded subdomains, or fully separate properties — it is the only view that exposes the patterns that page-level reporting cannot.
+
+### What the view shows
+
+Each row aggregates every page on the domain, weighted by pageview volume.
+
+| Column | What it reports |
+|--------|-----------------|
+| Domain | The full host (e.g. `example.com`, `m.example.com`, `de.example.com`) |
+| Pageviews | Total pageview volume across all pages of the domain |
+| [LCP](./lcp) p75 | Domain-wide Largest Contentful Paint at the 75th percentile |
+| [FCP](./fcp) p75 | Domain-wide First Contentful Paint at the 75th percentile |
+| [INP](./inp) p75 | Domain-wide Interaction to Next Paint at the 75th percentile |
+| [CLS](./cls) p75 | Domain-wide Cumulative Layout Shift at the 75th percentile |
+
+Aggregation is **pageview-weighted**: a domain with 10× the traffic counts 10× in the rollup. This matches Google's own methodology for measuring page-experience at the property level.
+
+### What this view surfaces that page-level doesn't
+
+A few comparison patterns only become legible at the domain level.
+
+- **Desktop site vs. mobile site (separate hosts)** — when `m.example.com` is a separate domain, this view lets you compare the mobile property's p75 to the desktop property's p75 directly. Page-level reports would scatter the comparison across two route trees.
+- **Country variants** — `de.example.com` vs. `fr.example.com` vs. `us.example.com`. The same templates can produce very different real-world p75 values depending on the origin location, CDN edge coverage, and average device class in the region.
+- **AMP vs. canonical** — if an AMP property is published on a separate host (or via Google's AMP cache), this view lets you measure whether AMP actually delivers the performance lift it promises for the audience.
+- **New domain rollouts** — when a redesign or replatform ships to a new domain first, this view is where the before-and-after comparison happens at the right granularity.
+
+### When to use this view
+
+| Question | Use |
+|----------|-----|
+| Are all domains hitting the same performance bar? | This view |
+| One domain is the laggard — which pages are responsible? | [Web Vitals by Page](./web-vitals-by-page) filtered to that domain |
+| Today's site-wide regression — single domain or all? | This view |
+| Total traffic at risk from a domain's poor scores | [Traffic loss risk](./traffic-loss-risk) |
+
+### Caveats
+
+A domain with very low pageview volume produces a noisy p75 — the same caveat that applies at the page level applies here. The view shows pageview count alongside each row so the reader can weigh confidence appropriately. Domains under a few thousand pageviews per window are best read as directional, not authoritative.

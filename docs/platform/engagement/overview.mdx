@@ -1,0 +1,49 @@
+---
+title: Engagement Overview
+description: A tour of the Engagement section — what each metric reports, what question it answers, and where to drill in for deeper analysis.
+---
+
+The **Engagement** section reports how users behave once they arrive on the site. Audience tells you how many people visited; Engagement tells you what they did. The section is organized around three questions: how much did users read, how deep did they go, and what did they look for?
+
+### How much did users read?
+
+The volume metrics establish the baseline.
+
+| Metric | Question it answers |
+|--------|---------------------|
+| [Pageview](./pageview) | How many individual page loads happened? |
+| [Total pageviews](./total-pageviews) | Aggregated pageview volume across the window |
+| [Session](./session) | How is a single visit defined and bounded? |
+| [Pageviews per session](./pageviews-per-session) | On average, how many pages did a visit cover? |
+| [Average session duration](./average-session-duration) | How long did the typical visit last? |
+
+Volume metrics are best read together — pageviews alone can grow because of more visitors, more pages per visit, or more sessions. The breakdown matters.
+
+### How deep did users go?
+
+Depth metrics show whether visitors actually engaged with content or bounced off.
+
+| Metric | Question it answers |
+|--------|---------------------|
+| [Bounce rate](./bounce-rate) | What share of sessions left after one page? |
+| [Scroll depth](./scroll-depth) | How far down each page did users scroll? |
+| [Reading stage](./reading-stage) | How does scroll depth bucket into reading-completion stages? |
+| [Infinite scroll rate](./infinite-scroll-rate) | What share of pageviews came from infinite-scroll loads? |
+
+Depth is where editorial work shows up. A page with high pageviews but stage-1 scroll depth is leaking attention right at the fold. See [`./infinite-scroll`](./infinite-scroll) for how the infinite-scroll pattern interacts with these numbers.
+
+### What did users look for?
+
+Search analytics surface the queries users typed and how the site responded.
+
+| Metric | Question it answers |
+|--------|---------------------|
+| [CTR](./ctr) | What share of searches led to a click? |
+| [Search funnel conversion rate](./search-funnel-conversion-rate) | What share of users who searched then engaged? |
+| [Empty-result searches](./empty-result-searches) | What queries returned nothing — and how often? |
+
+See [`./search`](./search) for the section-level walkthrough of how search analytics are captured and what each report reveals.
+
+### How to use this section
+
+Start with the depth metrics whenever a page or section shows traffic that isn't converting into expected outcomes. Volume metrics are useful for tracking trends; depth and search metrics are where actionable editorial decisions originate.

@@ -1,0 +1,39 @@
+---
+title: Content Intent
+description: How pages are classified by user intent — informational, navigational, commercial, or transactional — and what the catalog-wide distribution reveals.
+---
+
+**Content intent** classifies each page on the site by the type of user goal it serves. Where [`./search-intent`](./search-intent) applies the same taxonomy to queries, content intent applies it to pages: not "what is the user asking" but "what is this page actually for."
+
+### The intent taxonomy
+
+The classifier assigns each page a distribution over four standard categories, matching the search-intent taxonomy.
+
+| Intent | What the page primarily serves | Example pages |
+|--------|--------------------------------|---------------|
+| **Informational** | Learning or research | Explainers, how-tos, deep-dive features |
+| **Navigational** | Reaching a specific destination | Homepage, section landing pages, author pages |
+| **Commercial** | Evaluating or comparing options | Reviews, "best of" roundups, comparison guides |
+| **Transactional** | Taking a defined action | Pricing pages, signup flows, paywall, checkout |
+
+A single page can carry weight across multiple intents — a product review that compares two laptops carries strong commercial intent but also contains informational depth.
+
+### How content intent is classified
+
+The analytics pipeline runs an LLM-based classifier (in `apps/analyzer`) over the page's URL, title, and on-page text. The classifier returns a raw score for each intent category plus a **confidence** value (0–100).
+
+Scores are normalized to sum to 100% for display. The dashboard treats the highest-scoring intent as the page's **dominant intent**, but the full distribution is available for any analysis that benefits from the mix rather than the label.
+
+A `minConfidence` threshold filters out low-confidence classifications when accuracy matters more than coverage. Editorial teams looking for high-precision intent signals can set the threshold to 70+; teams looking for broad coverage can leave it at the default.
+
+### Why content intent matters
+
+The distribution of intent across the catalog answers practical editorial questions.
+
+- **Catalog mix** — does the site overweight informational content while underserving the commercial and transactional intents that drive conversions? A 90%-informational catalog leaves money on the table for any monetized property.
+- **Journey readiness** — pages with the right intent at the right step in the user journey are the ones that convert. Pair this view with the journey reports in the Revenue section to see whether each step has enough content of the appropriate intent.
+- **Intent gap detection** — comparing the intent distribution of **published pages** to the intent distribution of **inbound search queries** surfaces gaps: queries with commercial intent landing on pages with informational intent, for example.
+
+### Relationship to search intent
+
+The two concepts use the same taxonomy on purpose. When users search and land on a page, the dashboard can compute an **intent-match** signal: how well the search intent of the query aligns with the content intent of the page they ended up on. Persistent mismatches are content gaps in disguise.

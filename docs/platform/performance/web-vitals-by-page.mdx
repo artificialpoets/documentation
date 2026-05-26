@@ -1,0 +1,48 @@
+---
+title: Web Vitals by Page
+description: The per-page breakdown of Core Web Vitals — how to find the pages dragging down site-wide LCP, INP, and CLS, and how to read per-page p75 distributions.
+---
+
+The **Web Vitals by Page** view breaks the site-wide Core Web Vitals into one row per page (or route group). When the overview reports a regression, this is where the responsible pages surface.
+
+### What the view shows
+
+Each row reports a single page's p75 across the standard metrics, plus the pageview volume that the p75 was computed against.
+
+| Column | What it reports |
+|--------|-----------------|
+| Path | The page URL or route pattern |
+| Pageviews | Sample size for the row — pages with very low volume are deprioritized |
+| [LCP](./lcp) p75 | Page-level Largest Contentful Paint at the 75th percentile |
+| [FCP](./fcp) p75 | Page-level First Contentful Paint at the 75th percentile |
+| [INP](./inp) p75 | Page-level Interaction to Next Paint at the 75th percentile |
+| [CLS](./cls) p75 | Page-level Cumulative Layout Shift at the 75th percentile |
+
+Each metric cell carries the same color rating used in the overview (good, needs improvement, poor) so problem rows stand out at a glance.
+
+### How to find what's dragging the site down
+
+A site-wide p75 in the yellow or red is rarely caused by every page equally. The usual pattern is a small number of high-traffic pages with poor scores pulling the weighted average up. Two sort strategies isolate them:
+
+1. **Sort by metric descending** — surfaces the worst-performing pages globally. Useful for finding catastrophic regressions, but a page with poor LCP and only 50 pageviews per week is not a priority.
+2. **Sort by metric descending **and** filter by minimum pageview volume** — surfaces the pages that have both poor performance and enough traffic to matter to the site-wide p75. This is the right starting point for nearly every investigation.
+
+### Reading per-page p75 distributions
+
+A single page's p75 still represents 25% of its loads. Two patterns matter:
+
+- **Consistent slow** — the page's p75 is in the poor range and the spread between p50 and p95 is narrow. The page is uniformly slow; the cause is in the page itself (heavy LCP image, render-blocking script).
+- **Bimodal slow** — p50 is fast, p75 is borderline, p95 is far in the red. Some users get a fast page, others get a slow one. Look for cache misses, conditional rendering paths, or third-party scripts that only fire for some users.
+
+The overview page hides this distinction; this view exposes it.
+
+### When to use this view vs. the overview
+
+| Question | Use |
+|----------|-----|
+| Are we good site-wide today? | [Overview](./web-vitals-overview) |
+| Which specific pages are dragging us down? | This view |
+| Does the regression affect a specific subdomain or variant? | [Domain view](./web-vitals-by-domain) |
+| What's the traffic-weighted cost of fixing each page? | This view, sorted by pageview volume descending |
+
+For prioritizing fix work, this view paired with traffic volume tells you exactly where engineering effort produces the largest move in the site-wide p75.

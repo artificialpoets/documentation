@@ -1,0 +1,53 @@
+---
+title: Sites
+description: How to view and manage every site connected to your Artificial Poets workspace, including connection health, last sync, and quick access to per-site analytics.
+---
+
+The **Sites** page — labeled "Publisher network" in the dashboard — lists every site connected to your organization in a card grid. Each card is the entry point to the per-site detail view, where every analytics tab is scoped to that single property.
+
+### What the grid shows
+
+Each card represents one site. The card surfaces only what you need to spot a problem at a glance; deeper data lives behind the click.
+
+| Field | What it reports |
+|-------|-----------------|
+| Favicon | Resolved from the site's `faviconUrl`, then its WordPress logo, then `/favicon.ico` |
+| Site name | The display name set in [Site Settings](./settings) |
+| Domain | The bare URL with protocol stripped |
+| Last connection | When the Artificial Poets agent last reported an environment snapshot |
+| Status | A connection-health badge — see below |
+
+### Connection health badge
+
+The badge color is derived from how recent the last environment snapshot is. The badge is the fastest way to find sites that have silently stopped reporting.
+
+| Badge | Meaning | Threshold |
+|-------|---------|-----------|
+| **Healthy** (lime) | Reporting normally | Last snapshot less than 24 hours ago |
+| **Delayed** (amber) | Snapshot is getting stale | Between 24 and 48 hours ago |
+| **Not Connected** (rose) | Likely disconnected | More than 48 hours ago — the card border also turns red |
+| **No data** (zinc) | Never reported | The agent has not yet checked in |
+
+### Search and sort
+
+The grid is sorted alphabetically by site name. The search box in the page header filters by name in real time — useful when the publisher network has more than a screenful of sites.
+
+### Per-site menu
+
+Each card has a kebab menu with three actions:
+
+- **View** — opens the per-site detail page on the [Overview](./overview) tab.
+- **Sync** — triggers a fresh metadata pull from the site's WordPress install (name, logo, description). Useful when the site was renamed and the card is showing the old name.
+- **Settings** — opens the detail page on the [Settings](./settings) tab.
+
+### Per-site tabs
+
+Clicking into any site opens a tabbed detail view. Each tab answers a different question:
+
+| Tab | What it covers |
+|-----|----------------|
+| [Overview](./overview) | High-level snapshot — health issues, publishing, stack, engagement |
+| [Health](./health) | Real-user Web Vitals plus security and performance findings |
+| [Stack](./stack) | WordPress, PHP, server, database, and background-job configuration |
+| [Content](./content) | Content inventory — posts, taxonomies, plugins, themes |
+| [Settings](./settings) | Per-site configuration — tracking, search, ad stacker, sync controls |

@@ -1,0 +1,48 @@
+---
+title: Web Vitals Overview
+description: The Performance section's at-a-glance dashboard view of Core Web Vitals — what each tile shows, how to read the rating colors, and where to drill in.
+---
+
+The **Web Vitals Overview** is the entry point to the Performance section. It surfaces site-wide Core Web Vitals at the highest altitude: one value per metric, one rating per metric, no per-page detail. This is the daily-glance view — does the site meet Google's user-experience thresholds today, and if not, which metric is failing?
+
+For the conceptual definitions of each metric, see [`./core-web-vitals`](./core-web-vitals). This page documents the **dashboard view**.
+
+### What the view shows
+
+The overview renders four metric tiles plus a freshness indicator.
+
+| Tile | Metric | What the value represents |
+|------|--------|---------------------------|
+| LCP | [Largest Contentful Paint](./lcp) | Perceived load time of the largest visible element |
+| FCP | [First Contentful Paint](./fcp) | Time to the first rendered content |
+| INP | [Interaction to Next Paint](./inp) | Responsiveness to user interaction |
+| CLS | [Cumulative Layout Shift](./cls) | Visual stability across the page lifecycle |
+
+Each tile reports the **p75** value across all real user page loads in the selected window. See [`./p75`](./p75) for why the 75th percentile is the right summary statistic for performance distributions.
+
+### Reading the rating colors
+
+Every tile carries a rating drawn from Google's standard Core Web Vitals thresholds.
+
+| Color | Rating | Meaning |
+|-------|--------|---------|
+| Green | Good | At or under the "good" threshold — meets Google's expectation for real users |
+| Yellow | Needs improvement | Between "good" and "poor" — measurable but not actionable on its own |
+| Red | Poor | Over the "poor" threshold — affects ranking signals and user experience |
+
+A green tile means 75% of page loads cleared the bar; it does not mean every load was fast. The remaining 25% can still produce a meaningful tail of poor experiences, which is why even a green site benefits from looking at the per-page breakdown.
+
+### When to use the overview
+
+Use the overview as a daily health check and as the starting point for any regression investigation. The right next step depends on what the overview shows.
+
+| Pattern | Where to drill in |
+|---------|-------------------|
+| Site-wide metric just turned yellow or red | [`./web-vitals-by-page`](./web-vitals-by-page) — find the pages dragging the average down |
+| One metric red, others green | The per-page breakdown for that specific metric |
+| Specific subdomain or country variant suspected | [`./web-vitals-by-domain`](./web-vitals-by-domain) |
+| Need to estimate SEO ranking impact | [`./traffic-loss-risk`](./traffic-loss-risk) |
+
+### What the overview deliberately omits
+
+Per-page detail and per-domain aggregation are intentionally hidden at this level so the view stays scannable. Drill in via the related reports rather than trying to read regressions from the overview alone — a green site-wide LCP can still hide a single high-traffic page in the red.

@@ -1,0 +1,37 @@
+---
+title: Site Stack
+description: The per-site Stack tab — a collapsible breakdown of every layer the site runs on, from WordPress config and PHP through the server, database, and background-job runners.
+---
+
+The **Stack** tab is the deep technical view of one site. It exposes every layer the environment snapshot captured, organized as collapsible sections so you can scan summaries first and only expand the layer you need.
+
+### What each section covers
+
+Each section header shows a one-line summary so you don't need to expand it to see the basics.
+
+**WordPress config** — every entry from `wp-config.php` that the agent could resolve: `WP_DEBUG`, `DISALLOW_FILE_EDIT`, `FORCE_SSL_ADMIN`, `WP_CACHE`, and any custom constants. Boolean values render as Yes/No badges, objects pretty-print as JSON. The summary shows the most-impactful flags (e.g. "debug ON · SSL forced").
+
+**PHP** — version, SAPI, `memory_limit`, `max_execution_time`, `upload_max_filesize`, `post_max_size`, and the list of loaded extensions (truncated to the first 30 with a "+N more" indicator). Also includes `php_uname` and the disabled-functions list when set.
+
+**Server** — server software, protocol, HTTPS and HTTP/2 flags as Yes/No badges, and the resolved client IP.
+
+**Database** — engine (MySQL or MariaDB), version, charset, database name, `max_connections`, and the size in MB of the two tables most likely to bloat: `wp_options` and `wp_postmeta`. A "Top tables" sub-table lists the heaviest tables on disk with engine, size, and row count — useful for diagnosing why a backup takes forever or a query is slow.
+
+**Background jobs** — two views in one section:
+
+- **WP-Cron** — every scheduled event with hook name, schedule, interval, and seconds until next run. Misconfigured "next run" values (years in the future, or in the unsigned-int billions) surface as warnings on the [Health](./health) tab.
+- **Action Scheduler** — pending and failed counts. Failed tasks block WooCommerce and any plugin that builds on the framework.
+
+**Performance** — autoload size in MB, transient count, object-cache configuration (Redis, Memcached, etc.), and the OPcache configuration block when reported. Large autoload (over 1 MB) is the most common silent slowdown — see the [Health](./health) findings for the threshold.
+
+**Paths & hostname** — `WP_CONTENT_DIR`, `WP_PLUGIN_DIR`, and the OS hostname. Mostly useful for confirming which host serves a site in a fleet.
+
+**PHP extended** — the full `phpinfo()` dump, broken into the sections PHP normally renders (Core, modules, environment). Each subsection expands independently. The summary reads "phpinfo sections".
+
+**Server vars** — `$_SERVER` values the agent collected. Useful for confirming reverse-proxy headers or debugging environment-variable injection.
+
+### When to use this tab
+
+- **Stack audit** — confirm a fleet of sites is on the same PHP and WordPress versions.
+- **Post-incident diagnosis** — check whether `WP_DEBUG` was left on, whether HTTPS dropped, or whether the database charset changed.
+- **Migration planning** — compare the current stack against the target host's specs before moving a site.

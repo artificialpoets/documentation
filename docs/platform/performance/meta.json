@@ -1,0 +1,15 @@
+{
+    "title": "Performance",
+    "pages": [
+        "core-web-vitals",
+        "lcp",
+        "fcp",
+        "inp",
+        "cls",
+        "p75",
+        "web-vitals-overview",
+        "web-vitals-by-page",
+        "web-vitals-by-domain",
+        "traffic-loss-risk"
+    ]
+}

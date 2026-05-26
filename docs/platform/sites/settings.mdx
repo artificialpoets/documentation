@@ -1,0 +1,61 @@
+---
+title: Site Settings
+description: The per-site Settings tab — site identity, sync controls for WordPress configuration and metadata, and feature toggles for tracking, search, infinite scroll, and the GAM ad stacker.
+---
+
+The **Settings** tab exposes everything you can configure for one site. It has two sections: **Site information** (read-only identifiers and sync controls) and **Configuration** (feature toggles).
+
+### Site information
+
+The top section displays the site's identifiers and sync state. Identifiers are read-only — they're set when the site is connected.
+
+| Field | What it is |
+|-------|-----------|
+| Site ID | The internal Artificial Poets identifier for the site |
+| License ID | The API key the WordPress plugin uses to authenticate |
+| Vectorization model | The embedding model used for AI search (when enabled) |
+| Description | Free-text description from WordPress |
+| PostHog key | The PostHog project key, when set |
+| Created | When the site was added to the workspace |
+
+Three sync rows let you force a refresh on data that is otherwise pulled on a schedule:
+
+| Sync row | What it does | Last-run timestamp |
+|----------|--------------|--------------------|
+| **Config sync** | Pulls site-level configuration (settings stored in WordPress) into the dashboard | Reads from `last_config_time` |
+| **Environment sync** | Forces an immediate environment snapshot (the same data feeding [Overview](./overview), [Health](./health), [Stack](./stack), [Content](./content)) | Reads from the snapshot's `collectedAt` |
+| **Site metadata** | Refreshes the site's name, logo, and description from WordPress | Reads from the site record's `updatedAt` |
+
+Each row shows the elapsed time since the last successful sync (e.g. "2h ago") or "Never" if the sync has not run yet.
+
+### Configuration
+
+The toggles below control which Artificial Poets features are active on the site. Each toggle persists to the WordPress plugin; saving writes the new state through the API.
+
+| Toggle | What it does |
+|--------|--------------|
+| **Enable Artificial Poets** | Master switch — turns on analytics collection. Required for every other feature. |
+| **RAG** | Retrieval-augmented generation. *Coming soon.* |
+| **Intent analysis** | Content and visitor intent classification. *Coming soon.* |
+| **Infinite scroll** | Auto-loads the next article as readers reach the end of a post |
+| **GAM stacker** | Inject Google Ad Manager ads between infinite-scroll articles. Requires Infinite scroll. |
+| **Recommendation engine** | Personalizes search and infinite-scroll order. *Coming soon.* |
+| **AI search** | Semantic search backed by the vectorization model |
+
+### GAM stacker configuration
+
+When both **Infinite scroll** and **GAM stacker** are on, an additional configuration block expands below the toggles. It maps the stacker to a Google Ad Manager ad unit and controls the insertion cadence:
+
+| Field | Description |
+|-------|-------------|
+| Slot path | Full GAM slot path (network, site, and slot) |
+| Creative sizes | Width and height in pixels, comma-separated (e.g. `320,480`) |
+| Every N articles | How many new articles between ad insertions (minimum 1) |
+| Max ads | Upper bound on ads per reader session |
+| AI category | Narrows contextual signals for this stacker — plugin-specific |
+
+### Saving
+
+The **Save changes** button is enabled only when the form is dirty. After a save, a "Settings saved" message appears briefly, and the configuration is pushed to the site's WordPress install.
+
+> Details to expand: The toggles tagged "Coming soon" are visible but disabled. When those features ship, this page should add usage notes alongside each.
