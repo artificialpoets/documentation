@@ -1,0 +1,58 @@
+---
+title: Account Settings
+description: Manage your personal Artificial Poets account — name, email, profile picture, display name format, appearance theme, and local cache.
+---
+
+The **Account Settings** page is your personal profile within Artificial Poets. Every setting here applies only to your user — not to the organization. For organization-wide identity and branding, see [Organization Settings](./organization/settings).
+
+### Profile fields
+
+| Field | What it controls |
+|-------|------------------|
+| Email | Your primary email address — required |
+| First name | Your given name — required |
+| Last name | Your family name — required |
+| Avatar URL | A direct URL to a profile image; the current avatar is previewed below the field when set |
+
+### Display name format
+
+The display name is what shows up next to your avatar across the dashboard — in sidebars, comment threads, and audit logs. Five preset formats and one custom option:
+
+| Format | Example |
+|--------|---------|
+| First name only | `John` |
+| First name + last name | `John Doe` |
+| Last name + first name | `Doe John` |
+| First name + last initial | `John D.` |
+| Initials of all names | `JD` |
+| Custom | Any label you type |
+
+When **Custom** is selected, a separate "Custom display name" field appears for the free-text value. A live **Preview** box below the format selector shows exactly how your name will render.
+
+### Appearance
+
+A theme dropdown with three options:
+
+| Option | What it does |
+|--------|--------------|
+| **System** | Follows your operating system's light/dark preference |
+| **Light** | Always uses light mode |
+| **Dark** | Always uses dark mode |
+
+The dashboard switches themes immediately on save. Your selection is stored on the user record, so it follows you across browsers and devices.
+
+### Saving
+
+The **Save changes** button submits the form. A success message confirms the save; an inline error appears on validation failure (most commonly: Custom format selected without a value).
+
+### Clear all cache
+
+Below the form sits a **Clear all cache** button. Pressing it wipes the dashboard's local caches — analytics data, web vitals tables, plugin version lookups, and similar — forcing the next page load to re-fetch everything from the backend.
+
+Use this when:
+
+- A site change you just made isn't reflected in the dashboard
+- A chart looks frozen at stale data
+- You're debugging and want a clean read on what the API returns
+
+The button briefly displays "Cache cleared" on success. The page does not reload automatically — navigate or refresh to see the freshly fetched data.

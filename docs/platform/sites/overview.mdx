@@ -1,0 +1,40 @@
+---
+title: Site Overview
+description: The per-site Overview tab — a four-card snapshot of what needs attention, what was published, what's running, and how readers engaged.
+---
+
+The **Overview** tab is the default landing tab inside any site's detail page. It gives a one-screen read on the site's current state through four cards, each linking into the deeper tab where the underlying data lives.
+
+### Needs attention
+
+The first card shows the top two issues derived from the latest environment snapshot — outdated plugins, debug flags left on, security findings, performance concerns, and similar. Each issue is tagged by severity:
+
+- **Critical** (rose badge) — security or availability risks like an `admin` username or missing HTTPS
+- **Warning** (amber badge) — plugin updates pending, debug mode on, large admin surface
+- **Info** (sky badge) — performance hints like missing object cache or oversized autoload
+
+A `+N more in Health` line tells you how many additional findings the [Health](./health) tab will show. The card also includes a 14-day real-user vitals teaser when analytics data exists — a quick LCP/INP read per device.
+
+### Publishing & inventory
+
+Reports published-post and draft counts with a 7-day delta arrow (up or down). Up to three post-type badges show where the bulk of the inventory lives — typically `post`, `page`, and any custom types. Click "Open Content" to drill into the full content inventory on the [Content](./content) tab.
+
+### Stack & updates
+
+A compact view of what's running on the server.
+
+| Element | What it shows |
+|---------|---------------|
+| Badges | WordPress version, PHP version, server software, object cache state |
+| Alerts | Inline warnings for missing HTTPS or `WP_DEBUG` left on |
+| Updates line | Pending plugin, theme, and core updates |
+
+When everything is current, the line reads "No pending updates reported in snapshot." See the [Stack](./stack) tab for the full configuration drill-down.
+
+### Engagement
+
+Comment and user counts, again with 7-day delta arrows. When comment moderation data is present, a sub-line reports the approval ratio (e.g. "412 approved of 528 total"). Click into [Content](./content) for the user-role breakdown.
+
+### How the cards relate
+
+The Overview tab is intentionally lightweight — every card links to a deeper tab where the underlying data is fully exposed. Treat it as triage: scan the four cards, drill into whichever one flags something, then come back to confirm the fix landed on the next snapshot.

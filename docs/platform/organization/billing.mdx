@@ -1,0 +1,44 @@
+---
+title: Billing
+description: How to review invoices, update your billing address, and manage Stripe-backed payment methods for your Artificial Poets organization.
+---
+
+The **Billing** page has three tabs: **Invoices**, **Billing Information**, and **Payment Methods**. All three operate against your Stripe-backed billing customer record. Invoices and payment methods are fetched live from Stripe; billing information edits update the Stripe customer object.
+
+### Invoices
+
+The Invoices tab lists every invoice ever issued to the organization, paginated. Each row reports:
+
+| Column | What it shows |
+|--------|---------------|
+| Download | A PDF download button, when a PDF is available |
+| Invoice number | The Stripe invoice number, or the invoice ID if no number is set |
+| Date | The date the invoice was created |
+| Status | Paid (green), Pending (amber), or Overdue (red) |
+| Amount | The amount paid for paid invoices; the amount due otherwise |
+
+The Status column header is also a filter — click it to show only Paid or only Overdue / Open invoices. The page size selector (10, 25, 50) and Previous/Next buttons control pagination; for longer lists a "Go to page" dropdown appears.
+
+Clicking any row opens a side panel with the full invoice detail: status, amount, date, due date, and two buttons — one to download the PDF and one to open Stripe's hosted invoice page in a new tab.
+
+### Status meanings
+
+| Status | When it appears |
+|--------|-----------------|
+| **Paid** | The invoice has been paid in full |
+| **Pending** | The invoice is open and has not yet passed its due date |
+| **Overdue** | The invoice is open and the due date has passed |
+
+### Billing Information
+
+The Billing Information tab is a form for the billing customer's name, email, phone, and full address (line 1, line 2, city, state/region, postal code, two-letter country code). All fields are optional — save with whatever you have. The form is the Stripe customer object's editable surface; changes propagate to every subsequent invoice's billing block.
+
+### Payment Methods
+
+The Payment Methods tab lists every saved card on the customer with the brand (Visa, Mastercard, etc.), the last four digits, and the expiration date (MM/YY).
+
+To add a card, click **Add payment method**. The page creates a Stripe SetupIntent and renders the Stripe card form inline — card number, expiration, CVC, and postal code. Submitting confirms the SetupIntent against Stripe; on success the new card is added to the list. Cancel any time without persisting partial input.
+
+The form requires `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` to be configured. If it isn't, the **Add payment method** button is disabled and an inline error explains why.
+
+> Details to expand: deleting a saved card and setting a default card are not exposed in the current UI. When those flows ship, document them here.

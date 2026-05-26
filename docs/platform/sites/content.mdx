@@ -1,0 +1,50 @@
+---
+title: Site Content
+description: The per-site Content tab — a tabbed inventory of categories, tags, custom post types, taxonomies, image sizes, and installed plugins for a single site.
+---
+
+The **Content** tab is the per-site companion to the [Top Inventory](../content/top-inventory) page. Top Inventory ranks pages by performance across all sites; this tab catalogs what the site contains — every post type, term, image size, and plugin reported in the latest environment snapshot.
+
+### Top stats
+
+When data is present, three stat cards appear above the tabbed inventory:
+
+| Card | What it reports |
+|------|-----------------|
+| Published posts | Total across every public post type; badges break down counts per type |
+| Comments | Total comment count; badges show approved count and approval rate |
+| Users | Total user count; badges break down by role |
+
+### Inventory tabs
+
+A segmented control lets you switch between inventory views. Tabs only appear when the underlying data exists — a brand-new site without taxonomies won't see a Taxonomies tab.
+
+**Categories** — every category with post counts. Sorted by post count descending. Useful for spotting taxonomy bloat or unused categories.
+
+**Tags** — every tag with post counts. Same sort, same use case at finer granularity.
+
+**Custom post types** — every CPT registered on the site, with label, public flag, archive flag, REST base, and supported features (`title`, `editor`, `thumbnail`, etc.).
+
+**Taxonomies** — every registered taxonomy with label, hierarchical flag, attached object types, and term count. Below the table, the tab also surfaces `rewrite_rules_count` and `rest_routes_count` when present — useful proxies for how complex the site's routing has become.
+
+**Image sizes** — every registered image size with width, height, and crop mode.
+
+**Plugins** — the most-used tab. Every active and inactive plugin with:
+
+| Column | What it reports |
+|--------|-----------------|
+| Plugin | Name, author, and icon (from wp.org assets) |
+| Status | Active or Inactive badge |
+| Version | Currently installed version |
+| Update | "Up to date" or the available version |
+
+The plugin update check pulls live data from `wordpress.org`, so this column reflects what's actually available — not just what the snapshot reported. Below the plugin table:
+
+- **Active theme** — name and version
+- **Must-use plugins & drop-ins** (collapsed by default) — full list, useful when diagnosing why the snapshot includes code that doesn't appear in the WP Admin plugins screen.
+
+### How this relates to other tabs
+
+- The publishing counts here feed the [Overview](./overview) tab's Publishing card.
+- The plugin update count drives the "needs attention" findings on the [Health](./health) tab.
+- For site-by-site content performance, see [Top Inventory](../content/top-inventory).

@@ -7,6 +7,9 @@
         "content",
         "engagement",
         "performance",
-        "revenue"
+        "revenue",
+        "sites",
+        "organization",
+        "account-settings"
     ]
 }

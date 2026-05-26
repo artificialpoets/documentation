@@ -1,0 +1,12 @@
+{
+    "title": "Sites",
+    "pages": [
+        "index",
+        "overview",
+        "health",
+        "content",
+        "stack",
+        "environment",
+        "settings"
+    ]
+}

@@ -1,0 +1,52 @@
+---
+title: Organization Settings
+description: How to update your organization's name, contact information, logo, and sidebar branding — including the brand color, sidebar layout, and logo container shape.
+---
+
+The **Organization Settings** page is where you control your tenant's identity and how it appears in the dashboard chrome. Changes here are visible to every member of the organization the next time their dashboard loads.
+
+### Identity and contact
+
+The form's top section covers the basic record:
+
+| Field | What it is |
+|-------|-----------|
+| Organization Name | The display name shown in the sidebar and across the app — required |
+| Email | The primary contact email — required |
+| Phone | Optional contact number |
+| Website | Optional organization website |
+| Logo URL | A direct URL to your logo image; the current logo is previewed below when set |
+
+The Name and Email fields are required. Phone, Website, and Logo URL are optional. Saving validates the form and pushes the new values to the backing organization record.
+
+### Brand color
+
+A hex color used as the sidebar accent for every member of the organization. The page provides both a native color picker and a text input — they're kept in sync. The **Clear** button removes the color and falls back to the default accent.
+
+The hex value is validated on save; invalid input shows an inline error and the form is not submitted until the value is corrected or cleared.
+
+### Sidebar layout
+
+Three layouts control what appears at the top of the sidebar:
+
+| Layout | What it shows |
+|--------|---------------|
+| **Just Text** | Organization name only — no logo mark |
+| **Logo + Text** | Logo image if a Logo URL is set; otherwise initials and name |
+| **Collaboration** | Placeholder "EN x AP" label — preview of a future co-branded mode |
+
+The current selection's description appears below the dropdown so you can see what each option does without switching.
+
+### Logo container corners
+
+Controls the corner radius of the logo container in the sidebar. Five options — None, Small, Medium, Large, Full — corresponding to the design-system radius scale. **Full** renders a circle when the logo container is square; useful for round avatar-style logos.
+
+This setting only matters in the **Logo + Text** layout, since the other layouts don't render the container.
+
+### Saving
+
+The **Save changes** button submits the entire form. A success message confirms the save; an inline error appears if the request failed. Changes propagate to other open dashboards via a window event — most surfaces update without a refresh, but a hard reload is the fallback if something looks stale.
+
+> Details to expand: organization deletion is not exposed on this page. When it ships, document the side effects on sites, invoices, and team members here.
+
+For per-member personalization (display name, avatar, theme), see [Account Settings](../account-settings).

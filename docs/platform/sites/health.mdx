@@ -1,0 +1,50 @@
+---
+title: Site Health
+description: The per-site Health tab — real-user Core Web Vitals over the last 14 days plus a prioritized list of security, configuration, and performance findings.
+---
+
+The **Health** tab combines two views into one page: real-user performance (what visitors actually experienced) and snapshot findings (what the environment audit caught). Together they answer "is this site healthy?" from both the visitor and the operator angle.
+
+### Real user experience
+
+The top section shows Core Web Vitals over the last 14 days, split by device (Desktop and Mobile when both are available). For each device row, the tab reports:
+
+| Metric | What it reports |
+|--------|-----------------|
+| Bounce | Bounce rate for the device segment |
+| Visitors | Unique visitor count contributing to the row |
+| LCP | Largest Contentful Paint p75 — page-load speed |
+| INP | Interaction to Next Paint p75 — responsiveness |
+| CLS | Cumulative Layout Shift p75 — visual stability |
+
+Each metric is colored by score: green for good (90+), yellow for needs improvement, red for poor. Scores follow the same p75 logic as the global [Web Vitals by Page](../performance/web-vitals-by-page) report — this tab is the per-site slice of that report.
+
+The "Run again" button forces a fresh fetch. Data otherwise refreshes at most every 18 hours.
+
+### Web Vitals recommendations
+
+When real-user data is present, the tab generates one prioritized recommendation per device — a focused improvement to chase rather than a generic checklist. Each recommendation includes:
+
+- A **headline** naming the metric to focus on (e.g. "LCP is the bottleneck on Mobile")
+- A **context line** with the p75 score and contributing engagement signals
+- A short **action list** with concrete next steps
+
+The recommendation logic is derived from the same scoring used in the [Web Vitals Overview](../performance/web-vitals-overview).
+
+### Findings
+
+Below the vitals, the tab lists every issue the latest environment snapshot detected, sorted critical first. Findings come from the environment audit and cover three severities:
+
+| Severity | Examples |
+|----------|----------|
+| **Critical** | `admin` username present, site not on HTTPS, `allow_url_include` on |
+| **Warning** | `WP_DEBUG` enabled, plugin/theme/core updates available, high MySQL connection usage, non-utf8mb4 charset, failed Action Scheduler tasks |
+| **Info** | No object cache, large autoload, postmeta or options table bloat |
+
+Each finding shows the issue title and a short remediation note. The Overview tab surfaces the top two findings; this tab is the full list.
+
+### When to use this tab
+
+- **Triage a regression** — start here when the dashboard's site-wide vitals trend dips.
+- **Plan a maintenance window** — the snapshot findings list gives you the to-do for a one-off cleanup.
+- **Confirm a fix** — after a deploy, run again and watch a finding disappear in the next snapshot.

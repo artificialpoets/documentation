@@ -1,0 +1,48 @@
+---
+title: Site Environment
+description: How environment data is collected from each site, what each per-site tab draws from the snapshot, and where to look when the data is missing or stale.
+---
+
+The per-site tabs — Overview, Health, Stack, and Content — all read from the same underlying object: the **environment snapshot**. The snapshot is the latest report the Artificial Poets agent sent from the site, and it covers four broad categories: WordPress configuration, server and database, content inventory, and runtime performance. Understanding the snapshot is the key to understanding what every per-site tab can and cannot tell you.
+
+### What's in a snapshot
+
+| Category | Example fields |
+|----------|----------------|
+| WordPress | Version, `WP_DEBUG`, `DISALLOW_FILE_EDIT`, active theme, mu-plugins |
+| PHP | Version, SAPI, ini values, loaded extensions, full `phpinfo()` |
+| Server | Software, HTTPS, HTTP/2, client IP, raw `$_SERVER` |
+| Database | Engine, version, charset, top tables by size, connection usage |
+| Content | Post counts by type, taxonomies, image sizes, categories, tags |
+| Plugins | Installed list, active state, version, update availability |
+| Background jobs | WP-Cron schedule, Action Scheduler pending/failed counts |
+| Performance | Autoload size, transient count, object cache, OPcache config |
+| Security | `admin` username check, XML-RPC, update counts |
+
+### Collection cadence
+
+The agent posts a fresh snapshot at most every few hours. The exact interval depends on the WordPress cron schedule on the site itself, so heavily loaded sites with disabled `WP_CRON` may report less often. The [Sites list](./) Status badge uses the snapshot age as its primary health signal.
+
+### Per-tab usage
+
+Each tab draws a different slice of the snapshot:
+
+| Tab | What it pulls |
+|-----|---------------|
+| [Overview](./overview) | Top issues, publishing counts, stack badges, comment and user counts |
+| [Health](./health) | The full issues list plus real-user Core Web Vitals from analytics (not the snapshot) |
+| [Stack](./stack) | WordPress, PHP, server, database, jobs, performance, paths, raw vars |
+| [Content](./content) | Categories, tags, CPTs, taxonomies, image sizes, plugins, themes |
+| [Settings](./settings) | Reads `collectedAt` to show when the snapshot was last received |
+
+The Health tab is the one exception: it combines the snapshot's audit findings with **real user data** from the analytics service. That portion respects the same date logic as the global [Web Vitals by Page](../performance/web-vitals-by-page) view — last 14 days, p75 by device.
+
+### When data is missing
+
+If a tab shows "No environment data yet", the site has never reported a snapshot. New sites typically need 5–15 minutes before the first snapshot lands. If a previously connected site stops reporting, the [Sites list](./) badge will turn amber within 24 hours and rose at 48 hours.
+
+To force a refresh, open the [Settings](./settings) tab and use the "Environment snapshot" sync row. That triggers an immediate pull rather than waiting for the next scheduled cron.
+
+### Geographic and device segmentation
+
+Some environment data overlaps with what the analytics service reports for the same site. The snapshot is the authority for server-side configuration; the analytics service is the authority for visitor behavior. For device-mix breakdowns and geographic distribution, see the global reports under [Performance](../performance/web-vitals-overview) and [Audience](../audience/).

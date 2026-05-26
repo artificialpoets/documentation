@@ -1,0 +1,57 @@
+---
+title: Team Management
+description: How to invite, manage, and remove team members in your organization, including the difference between Admin and Guest roles and how pending invitations work.
+---
+
+The **Team Management** page lists every member of your organization plus any outstanding invitations. From here you can invite new people, change a member's role, remove a member, or revoke a pending invitation.
+
+### Roles
+
+Two roles exist today:
+
+| Role | What it can do |
+|------|----------------|
+| **Admin** | Full access — manage settings, billing, team, and every site |
+| **Guest** | Limited access — view the dashboard but not modify org-level configuration |
+
+Roles render as badges in the table: Admin (orange) and Guest (zinc). Pending invitations also render a Pending badge alongside the proposed role.
+
+### Team list
+
+The table has one row per member or pending invitation, with the following columns:
+
+| Column | What it shows |
+|--------|---------------|
+| Avatar | The member's profile picture, or their initials when no picture is set |
+| Name | Display name, or "Pending Invitation" for unaccepted invites |
+| Email | The member's primary email address |
+| Role / Status | Role badge for active members; role + Pending for invitations |
+| Menu | Per-row actions |
+
+### Inviting someone
+
+Click **Invite person** to open the invite modal. The form requires:
+
+- **Email address** — where the invitation will be sent
+- **Role** — Admin or Guest; defaults to Guest
+
+On submit, the invitation is recorded and the new entry appears in the table with a Pending badge. Invitations expire after 3 days. The invitee receives an email with a link to accept and join.
+
+### Per-row actions
+
+The kebab menu on each row exposes different actions depending on row type:
+
+**Active members:**
+
+- **Make Guest** / **Make Admin** — swap the member's role. The label flips based on the member's current role.
+- **Remove from organization** — revokes access. The row is removed immediately on success.
+
+**Pending invitations:**
+
+- **Revoke invitation** — cancels the pending invite. The row is removed from the table.
+
+### How team membership relates to sites
+
+Adding someone to the organization gives them access to every site connected under it. There is no per-site team membership — see [Sites](../sites/) for what each member can see once they're in the org. Billing and organization-wide settings — like the brand color set on [Organization Settings](./settings) — are gated to Admins.
+
+> Details to expand: the role-change handler is wired to the table but the backing endpoint is still being shipped. When the endpoint lands, update the "Per-row actions" section with any error semantics surfaced by the API.

@@ -1,0 +1,22 @@
+---
+title: Organization
+description: Manage your organization's settings, team members, and billing. Each organization is a tenant boundary — sites, billing, and team access are all scoped to it.
+---
+
+The **Organization** section is where you configure your tenant in Artificial Poets. An organization is the top-level boundary in the product: every site, every team member, and every invoice belongs to exactly one organization. Switching organizations switches the data you see across every other section of the dashboard.
+
+### What this section covers
+
+| Page | What it covers |
+|------|----------------|
+| [Organization Settings](./settings) | Identity, contact info, and sidebar branding (color, logo, layout) |
+| [Team Management](./team) | Members, pending invitations, role assignment |
+| [Billing](./billing) | Invoices, billing address, and Stripe-backed payment methods |
+
+### How organizations relate to sites
+
+Every site in the [Sites](../sites/) list belongs to one organization. When you connect a new site, it inherits the organization context of the user who connected it. Site-level configuration lives in the per-site [Settings tab](../sites/settings); organization-level configuration lives here.
+
+### How team membership relates to access
+
+Adding someone to the organization grants them access to every site under that organization, scoped by their role. There's no per-site sharing today — invite at the org level and use roles to control what each member can do. See [Team Management](./team) for the role taxonomy.
