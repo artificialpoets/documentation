@@ -1,0 +1,29 @@
+---
+title: Platform
+description: How the Artificial Poets engine works end-to-end — content sources, AI models, infrastructure lanes, and the real-human filter that keeps everything honest.
+---
+
+The **Platform** section is the engine room. The rest of the docs cover what the platform produces — audience charts, recommendations, performance reports. This section covers how those outputs are built: where your content enters, which models process it, and how the results reach your readers.
+
+You do not need to read this section to use the platform day-to-day. The dashboard renders the same information through visual surfaces. But when you want to know *why* a recommendation looked the way it did, or what changed when a model was upgraded, this is the section to consult.
+
+### What this section covers
+
+| Page | What it covers |
+|------|----------------|
+| [Overview](./overview) | The four KPIs and the content sources you have connected — the platform at a glance |
+| [Instances](./instances) | The five infrastructure lanes — ingest, inference, storage, serving, observability — visualized as a flow |
+| [Models](./models) | The AI model catalog — eight model kinds across in-house and third-party providers |
+| [Real Humans](./real-humans) | How the platform distinguishes real visitors from bots and why every metric in the product depends on this |
+
+### How the platform is organized
+
+Everything in this section maps to one of five lanes. Content arrives on the left, predictions flow out on the right:
+
+1. **[Ingest](./ingest)** — connectors pulling text, audio, and video from your CMS, podcast host, and video platform.
+2. **[Inference](./inference)** — AI models running on that content to produce embeddings, transcripts, intent labels, and recommendations.
+3. **[Storage](./storage)** — three stores that hold raw content, vectors, and analytical aggregates.
+4. **[Serving](./serving)** — APIs and embeds that hand outputs to your application in real time.
+5. **[Observability](./observability)** — the platform watching itself, so anomalies surface before you notice them.
+
+The [Instances](./instances) page renders this as a live map. The [Overview](./overview) page summarizes the same flow as four KPIs and a list of connected sources.

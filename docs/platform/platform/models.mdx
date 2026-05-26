@@ -1,0 +1,67 @@
+---
+title: Platform Models
+description: The AI model catalog — eight model kinds across in-house and third-party providers — with what each one does, what it consumes, and where it shows up in the product.
+---
+
+The **Platform → Models** page is the registry of every AI model currently running for your account. Each entry shows the model's kind, its provider, and the part of the product it powers. Use this page to understand which models drive which outputs, and to spot when a new model has been rolled out.
+
+The platform supports eight model kinds today. Some run in batch (one pass per piece of content); others run live on every user request.
+
+### The eight model kinds
+
+| Kind | What it does | Glossary |
+|------|--------------|----------|
+| **Embedding** | Turns content into a numeric vector for similarity search | [Embedding](./embedding) |
+| **Reranker** | Reorders candidate lists by predicted relevance | [Reranker](./reranker) |
+| **Transcription** | Converts audio to time-aligned text | [Transcription](./transcription) |
+| **Captioning** | Generates short text summaries of images and video frames | — |
+| **Recommender** | Picks what to show a user given a context | [Recommender](./recommender) |
+| **Intent classifier** | Labels a query or session with the user's goal | [Intent classifier](./intent-classifier) |
+| **Analyst** | Writes natural-language analyses of trends in your data | — |
+| **Real Human classifier** | Scores sessions for the probability they are a real human | [Real Human classifier](./real-human-classifier) |
+
+Each kind has at least one running model. The platform may run multiple models of the same kind for A/B testing — you will see both listed, with the active variant marked.
+
+### Providers
+
+The platform mixes in-house and third-party models. The catalog labels each one:
+
+- **Artificial Poets** — proprietary models trained on the platform's data
+- **Anthropic** — Claude family models, used for analyst and some classification
+- **OpenAI** — GPT family models, used for embeddings and some generation
+- **BAAI / Hugging Face** — open-source models for embedding and reranking
+
+You do not pick which provider runs which kind — the platform makes the choice based on quality, cost, and latency budget. The catalog shows you the current choice so there are no surprises.
+
+### Reading a model card
+
+Each model in the catalog shows:
+
+- **Provider icon** — quick visual for which company's model is in play
+- **Kind label** — one of the eight kinds above
+- **Media badges** — which content types it handles (text, audio, video)
+- **Status** — active, candidate (in A/B), or deprecated
+
+Click into any model for a detail view with:
+
+- The training date or version pinned today
+- The inputs and outputs of the model
+- The downstream features that depend on it
+- Recent quality metrics — accuracy, latency, cost-per-call
+
+### When a new model lands
+
+The platform rolls model upgrades through A/B variants visible on this page. The flow:
+
+1. A new variant appears as **candidate** alongside the existing **active** model.
+2. The candidate runs on a small share of traffic; the active one continues to serve the rest.
+3. Quality metrics are compared over a few days.
+4. The candidate is promoted to active or rolled back. The previous active is marked **deprecated** and then removed.
+
+You can see this happening live on the page — the candidate badge tells you the platform is currently evaluating a change.
+
+### What is *not* on this page
+
+- Raw model outputs — those are inputs to the dashboard pages, not surfaced here directly.
+- Cost breakdowns — those live under [Organization → Billing](../organization/billing).
+- Hyperparameter details — the platform abstracts these. If you need a deeper view of model internals, contact the Artificial Poets team.

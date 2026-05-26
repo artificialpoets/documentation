@@ -1,0 +1,54 @@
+---
+title: Engagement Depth
+description: The Depth page — how far into a piece of content users actually get, measured by scroll percentage and reading-stage milestones.
+---
+
+The **Depth** page measures how far users get inside a single piece of content. It is the answer to "yes, they clicked — but did they read it?" Pageviews count opens; depth counts engagement *inside* the page.
+
+The metric on this page is [scroll depth](./scroll-depth), reported at percentile thresholds.
+
+### What gets measured
+
+Every page tracks the maximum scroll position the user reached, expressed as a percentage of the document's scrollable height. The Platform also tracks **reading-stage milestones** — discrete checkpoints corresponding to common content structures.
+
+| Milestone | Default trigger | What it indicates |
+|-----------|-----------------|-------------------|
+| **Started** | 1% scroll, > 5s on page | The user committed past the headline/hero |
+| **Engaged** | 25% scroll | The user is past the intro and into the body |
+| **Half** | 50% scroll | The user is mid-article |
+| **Most** | 75% scroll | The user is into the closing arguments |
+| **Finished** | 90% scroll OR `reading-stage="end"` event | The user reached the end |
+
+The thresholds are configurable per site. On long-form content you may want to push "Finished" to 95% or rely on the explicit event; on short articles 90% may already be the end of the body.
+
+### Two views
+
+The page shows depth in two complementary ways:
+
+1. **Distribution histogram** — how depth is spread across sessions on the selected content slice. A spike at 25% with a long tail beyond it is healthy; a wall at 5% means most visitors never engaged.
+2. **Milestone funnel** — the conversion rate from one stage to the next. Lets you spot where readers consistently drop off (e.g., 90% start, 60% engage, 25% half — meaning the intro is fine but the body is too long).
+
+### Depth vs. dwell time
+
+Depth and dwell time are correlated but not interchangeable.
+
+| Signal | What it captures | Easy to game |
+|--------|------------------|--------------|
+| Depth | Spatial progress through the document | Hard — requires actual scroll input |
+| Dwell time | Wall-clock time on the page | Easy — open and walk away |
+
+Both are needed. A page with high depth and low dwell is being scanned, not read. A page with high dwell and low depth is loaded as a tab and left alone.
+
+### Caveats
+
+A few situations distort depth in ways worth knowing:
+
+- **Infinite scroll** — depth percentages are computed against the document's full height. When the document grows as the user scrolls, the percentage moves down rather than up. See [Infinite scroll](./infinite-scroll) for the right way to read those sessions.
+- **Mobile vs. desktop** — at the same content length, mobile users typically reach higher depth percentages because the same body height = more scrolling. Filter by device when comparing.
+- **Image-heavy pages** — depth is computed pixel-wise. A heavily illustrated page may show low average depth not because users disengaged but because the body of the page is *tall*.
+
+### What is *not* on this page
+
+- Per-paragraph attention — depth is page-level, not selection-level.
+- Heatmaps — pointer/click heatmaps live in the [Sites](../sites) detail view, not here.
+- Reading speed inferences — the Platform does not estimate reading time from depth + dwell; reading is too variable per user.

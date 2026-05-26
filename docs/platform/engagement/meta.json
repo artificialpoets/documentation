@@ -1,6 +1,10 @@
 {
     "title": "Engagement",
     "pages": [
+        "infinite-scroll",
+        "depth",
+        "search",
+        "---",
         "overview",
         "pageview",
         "total-pageviews",
@@ -10,9 +14,7 @@
         "bounce-rate",
         "scroll-depth",
         "reading-stage",
-        "infinite-scroll",
         "infinite-scroll-rate",
-        "search",
         "ctr",
         "search-funnel-conversion-rate",
         "empty-result-searches"

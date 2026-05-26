@@ -1,0 +1,77 @@
+---
+title: Real Humans
+description: How the platform separates real visitors from bots — the model, the score, the thresholds, and why every metric in the product depends on this filter.
+---
+
+The **Platform → Real Humans** page is where you see how the platform separates real visitors from automated traffic. Every other number in the product — pageviews, sessions, retention, recommendation quality — is computed *after* this filter is applied. If you only trust one page in the Platform section to be calibrated correctly, make it this one.
+
+The page is powered by the [Real Human classifier](./real-human-classifier), called **RHM** for short.
+
+### The two views
+
+The page has two stacked sections:
+
+1. **Right now** — the current real-human share across all sites in your account, with a sparkline showing the trend over the last 24 hours.
+2. **By site** — the same numbers broken down per site, so you can spot when one site is being targeted while the rest are clean.
+
+A sudden drop in the right-now share usually means a bot wave hit a specific site; the by-site view will pinpoint which one.
+
+### The score, the bucket, and the threshold
+
+For each session, the RHM model produces a score between 0 and 1 (higher = more likely human). The platform converts the score into a **bucket** for display:
+
+| Bucket | Default threshold | Interpretation |
+|--------|-------------------|----------------|
+| Real human | score ≥ 0.85 | Counted in all analytics, used in recommender training |
+| Uncertain | 0.5 ≤ score < 0.85 | Counted in some analytics, excluded from recommender training |
+| Likely bot | score < 0.5 | Excluded from all analytics and recommender training |
+
+The thresholds are tunable per site. The defaults are conservative — they accept some false positives in the "uncertain" bucket rather than misclassify real humans as bots.
+
+### What signals the model uses
+
+The RHM model considers signals from three families:
+
+| Family | Examples |
+|--------|----------|
+| Browser fingerprint | User-agent, plugins, screen size, time zone, language |
+| Network | IP reputation, ASN, country, proxy detection |
+| Behavior | Pointer movement, scroll cadence, click timing, dwell time, session sequence |
+
+No single signal decides the outcome. The model weighs all of them, which makes it robust to bots that perfectly fake one dimension (a realistic user-agent) but stumble on others (mechanical timing).
+
+### Why filtering matters
+
+If you do not filter for real humans, every analytics number is biased upward by bots — and the bias is uneven. Articles that bots love (anything cited in scraping tutorials) look like top-performing content; high-quality editorial content looks worse by comparison. The recommender, trained on this signal, learns the wrong lessons and surfaces content that bots clicked.
+
+Filtering with RHM means:
+
+- Pageview, session, and unique-visitor counts reflect real audiences.
+- Retention curves are not inflated by scrapers polling on a schedule.
+- Recommender training is not poisoned by automation.
+- Performance percentiles (Core Web Vitals) reflect real-user-monitoring data.
+
+### Tuning the threshold
+
+You can override the bucket thresholds per site under **Sites → Settings → Real Humans**. Lower the threshold if you suspect bots are slipping through; raise it if you suspect real users are being incorrectly excluded.
+
+Two failure modes to watch:
+
+- **Too lax** — bots show up in analytics, distorting your top-content list and degrading recommendations over time.
+- **Too strict** — real users with unusual setups (accessibility tools, slow connections, niche browsers) get excluded; underlying audience size looks artificially small.
+
+The Real Humans page shows you both rates so you can adjust.
+
+### When you should care
+
+You do not need to touch this page in normal operation — defaults are good. Open it when:
+
+- Audience numbers shift suddenly with no marketing change → check for a bot wave here first.
+- A site is showing zero or very low traffic → the threshold may be excluding real users.
+- A recommender's quality metric drops → check whether the share of bots in training data has changed.
+
+### What is *not* on this page
+
+- Raw session lists — those are downstream analytics, not Platform.
+- IP-level blocks or WAF rules — RHM is statistical, not a firewall. If you need to hard-block a known-bad IP range, use your CDN.
+- Bot identification by name — the model gives you a score, not a label like "this is Googlebot." Bot taxonomy lives outside the platform.
