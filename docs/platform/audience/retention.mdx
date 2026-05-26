@@ -1,8 +1,51 @@
 ---
 title: Retention
-description: Placeholder public docs page for the Audience retention area.
+description: How audience retention is measured — returning users, cohort curves, the DAU/MAU stickiness ratio, and activity-based vs. feature-based retention.
 ---
 
-This page is a placeholder for the Audience retention docs.
+**Retention** measures how reliably an audience comes back. The Audience section reports retention as a complement to acquisition: a site with strong acquisition but weak retention is renting traffic, not building one.
 
-Content will be added later.
+### Returning vs. new users
+
+The simplest retention signal is the share of returning users in the current window. Each session carries `$is_first_session` from PostHog; the dashboard inverts that flag to produce the returning-user count.
+
+| Cohort | Definition |
+|--------|------------|
+| New users | First-ever session falls inside the selected window |
+| Returning users | First-ever session predates the selected window |
+
+A healthy mix depends on the site's lifecycle stage. Early-stage sites typically show 70%+ new; mature sites stabilize around 30–50% new with the rest returning.
+
+### Cohort retention curves
+
+The dashboard groups users by their **week of first visit** (the acquisition cohort) and tracks what share return in each subsequent week. This produces the standard retention curve.
+
+| Day after first visit | Typical content-publisher retention |
+|-----------------------|------------------------------------|
+| Day 1 | 20–35% |
+| Day 7 | 8–15% |
+| Day 30 | 3–8% |
+
+These benchmarks vary heavily by content vertical. News and reference sites often see flatter, more reliable retention. Long-form publications see steep early drop-off but a stable long tail of monthly returnees.
+
+### Activity-based vs. feature-based retention
+
+Two retention questions deserve separate measurement:
+
+- **Activity-based retention** — did the user come back at all? Any tracked event in the cohort window counts. This is the default the dashboard reports.
+- **Feature-based retention** — did the user come back **and use a specific feature** (search, account, paid content, newsletter signup)? This filters the retention numerator to events of a particular type.
+
+Activity retention shows whether the brand is sticky. Feature retention shows whether a specific surface is sticky. Both matter, but they answer different questions.
+
+### Stickiness (DAU/MAU)
+
+The DAU/MAU ratio is a single-number summary of how habit-forming the product is. See [`./dau`](./dau) and [`./mau`](./mau) for the full definitions; the ratio is computed as the average [DAU](./dau) over the window divided by [MAU](./mau) at window close.
+
+| Stickiness | Interpretation |
+|------------|----------------|
+| > 0.50 | Daily-habit product (messaging, social) |
+| 0.20 – 0.50 | Strong engagement (productivity, news) |
+| 0.10 – 0.20 | Moderate (most content publishers) |
+| < 0.10 | Episodic — users visit on specific triggers only |
+
+A rising stickiness ratio at flat MAU is the cleanest signal that retention is improving — the existing audience is showing up more often, not just being topped up by acquisition.

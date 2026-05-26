@@ -1,8 +1,40 @@
 ---
 title: Infinite Scroll
-description: Placeholder public docs page for the Engagement infinite scroll area.
+description: The infinite-scroll UX pattern, how the Platform measures it, and the trade-offs between engagement, SEO, and accessibility that come with it.
 ---
 
-This page is a placeholder for the Engagement infinite scroll docs.
+**Infinite scroll** is a content-loading pattern where additional pages appear automatically as the user scrolls toward the bottom of the current one, without a manual click or page navigation. The Platform treats infinite scroll as a first-class engagement signal because it changes the meaning of nearly every other engagement metric on the page.
 
-Content will be added later.
+This page covers the **pattern**. For the metric that quantifies its use, see [`./infinite-scroll-rate`](./infinite-scroll-rate).
+
+### How it works in measurement
+
+A traditional pageview corresponds to a full document load. With infinite scroll, the user sees what looks like multiple "pages" but the browser only loaded one. The Platform's tracking distinguishes the two cases at the event level.
+
+| Event source | What it represents |
+|--------------|--------------------|
+| Initial navigation `$pageview` | The first document load — the canonical pageview |
+| Infinite-scroll `$pageview` | A scroll-triggered virtual pageview emitted by the site's frontend when the next item appears |
+
+Both fire `$pageview` so they aggregate together in volume reports, but the Platform records the source so the infinite-scroll rate can be reported separately.
+
+### The trade-offs
+
+Infinite scroll is rarely a neutral design choice. The Platform surfaces the consequences so editorial and product teams can decide what they want to optimize for.
+
+| Dimension | Effect of infinite scroll |
+|-----------|---------------------------|
+| Engagement depth | Often higher — users move through more items per visit |
+| Pageviews per session | Can inflate, especially when virtual pageviews are emitted aggressively |
+| Average session duration | Tends to increase — there's no natural stop |
+| SEO crawlability | Decreases — search bots cannot scroll, so items below the fold may be invisible to indexing |
+| Accessibility | Decreases — screen-reader users and keyboard navigators struggle with constantly shifting page state |
+| Footer reachability | Decreases to zero — the footer never appears if the feed never ends |
+
+### When the pattern works
+
+Infinite scroll is well suited to feed-style consumption: image galleries, social streams, latest-news indexes where the user is browsing without a specific target. It is poorly suited to reference content, transactional flows, and any context where the user expects to find a specific item and then leave.
+
+### Reading the data
+
+When a site uses infinite scroll on some surfaces and not others, the infinite-scroll rate becomes the lens for interpreting the rest. A surface with a high infinite-scroll rate will naturally show inflated pageviews, longer session durations, and lower per-page scroll depth — because the document depth is no longer the meaningful unit. Compare like-for-like by filtering out infinite-scroll pageviews when measuring per-article engagement.

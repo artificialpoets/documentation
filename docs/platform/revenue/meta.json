@@ -1,4 +1,14 @@
 {
     "title": "Revenue",
-    "pages": ["overview", "high-intent-content", "journey-optimization", "sponsor-discovery"]
+    "pages": [
+        "overview",
+        "journey-optimization",
+        "journey-step",
+        "users-reached-step",
+        "intent-progression",
+        "sample-size",
+        "min-confidence",
+        "high-intent-content",
+        "sponsor-discovery"
+    ]
 }

@@ -1,22 +1,25 @@
 ---
 title: Performance
-description: Performance docs aligned to the dashboard's performance section.
+description: The Performance section — Core Web Vitals, per-page and per-domain breakdowns, and the estimated SEO traffic exposure from poor scores.
 ---
 
-This section maps public docs to the dashboard's Performance area.
+The **Performance** section reports the site's Core Web Vitals — Google's standard performance metrics — at the site, page, and domain level, and estimates the SEO traffic risk that poor scores expose. Where the rest of the Platform reports what users did, Performance reports the experience they had while doing it.
 
-## Dashboard page mapping
+### What this section covers
 
-- `/performance/web-vitals-overview`
-- `/performance/web-vitals-by-domain`
-- `/performance/web-vitals-by-page`
-- `/performance/traffic-loss-risk`
+| Page | What it covers |
+|------|----------------|
+| [Core Web Vitals](./core-web-vitals) | The conceptual definitions of LCP, FCP, INP, and CLS |
+| [LCP](./lcp) | Largest Contentful Paint — perceived load speed |
+| [FCP](./fcp) | First Contentful Paint — time to first visible content |
+| [INP](./inp) | Interaction to Next Paint — interaction responsiveness |
+| [CLS](./cls) | Cumulative Layout Shift — visual stability |
+| [p75](./p75) | The 75th-percentile statistic used to summarize each metric |
+| [Web Vitals Overview](./web-vitals-overview) | The dashboard view — at-a-glance site-wide vitals |
+| [Web Vitals by Page](./web-vitals-by-page) | Per-page breakdown to find pages dragging the site-wide score |
+| [Web Vitals by Domain](./web-vitals-by-domain) | Domain-level aggregation for multi-domain accounts |
+| [Traffic Loss Risk](./traffic-loss-risk) | Estimated organic traffic at risk from poor Core Web Vitals |
 
-## Status
+### How to read the section
 
-This is a section placeholder. Dedicated how-to and reference pages still need to be written.
-
-## Follow-up issues
-
-- Add docs for Web Vitals overview and drill-down workflows.
-- Add docs for traffic loss risk interpretation and troubleshooting.
+Start with [Core Web Vitals](./core-web-vitals) and [p75](./p75) for the conceptual foundation. Use [Web Vitals Overview](./web-vitals-overview) as the daily health check, and drill into [Web Vitals by Page](./web-vitals-by-page) whenever the overview shows a regression. [Traffic Loss Risk](./traffic-loss-risk) converts the technical metrics into the impact view product and editorial teams care about: how much organic traffic is at stake.

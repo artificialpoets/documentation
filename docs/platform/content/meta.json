@@ -1,4 +1,10 @@
 {
     "title": "Content",
-    "pages": ["top-inventory", "content-intent", "search-stats"]
+    "pages": [
+        "top-inventory",
+        "content-intent",
+        "search-intent",
+        "device-segment",
+        "bot-pageviews"
+    ]
 }

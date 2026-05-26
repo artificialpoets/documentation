@@ -1,8 +1,43 @@
 ---
 title: Traffic Loss Risk
-description: Placeholder public docs page for the Performance traffic loss risk area.
+description: How poor Core Web Vitals translate into SEO ranking risk — the Platform's estimate of organic traffic exposure and how to prioritize fixes by impact.
 ---
 
-This page is a placeholder for the Performance traffic loss risk docs.
+**Traffic Loss Risk** estimates how much organic traffic the site stands to lose because of poor Core Web Vitals. Google's page-experience signal is part of search ranking, and pages whose [p75](./p75) Web Vitals fall in the "needs improvement" or "poor" ranges are competing at a disadvantage against pages that meet the thresholds. This report quantifies the exposure and orders pages by traffic-weighted impact, so engineering effort can be spent where it produces the biggest recovery.
 
-Content will be added later.
+### How the estimate is computed
+
+The report classifies each page by the worst of its Core Web Vitals ratings, then weights by recent organic-search pageviews.
+
+| Risk band | Definition |
+|-----------|------------|
+| High risk | Any of [LCP](./lcp), [INP](./inp), or [CLS](./cls) p75 in the **poor** range |
+| Medium risk | All three metrics in **good** or **needs improvement**, with at least one in **needs improvement** |
+| Low risk | All three metrics in the **good** range |
+
+The page's organic-search pageviews over the selected window are then attributed to its risk band. The result is a triage view: total organic pageviews exposed to ranking pressure, split into high, medium, and low risk.
+
+### What the report shows
+
+| Column | What it reports |
+|--------|-----------------|
+| Path | The page URL or route pattern |
+| Risk band | High / Medium / Low based on the worst-of rule above |
+| Organic pageviews | Pageviews attributed to the Organic Search channel in the window |
+| Worst metric | Which Web Vital is in the worst rating — the one to fix first |
+| p75 value | The actual p75 of the worst metric |
+
+Sorting by organic pageviews descending within the High Risk band produces the engineering backlog. Fixing the top three pages in that list will move the site-wide signal more than fixing thirty long-tail pages with the same metric problem.
+
+### Why traffic-weighted matters
+
+A "poor" page with 100 monthly organic visits and a "poor" page with 100 000 monthly organic visits both contribute to the site's reputation with Google, but they don't contribute equally to traffic loss. Traffic-weighted impact is the only correct lens for prioritization because:
+
+- Ranking changes affect each page independently — the high-volume page losing a position costs hundreds of times more visits than the low-volume page losing the same position.
+- Engineering effort to fix a slow page is roughly constant regardless of the page's traffic. Effort spent on high-volume pages has dramatically better return.
+
+### What the report deliberately does not claim
+
+This report estimates exposure, not certainty. Google's ranking algorithm is opaque, multi-signal, and changes regularly. A page in the High Risk band is at structural disadvantage; it is not guaranteed to lose traffic, and fixing it is not guaranteed to recover any specific amount. Use the report to **order** fix work, not to **forecast** traffic.
+
+For the underlying Web Vitals data, see [`./core-web-vitals`](./core-web-vitals); for the per-page view that powers the page-level details, see [`./web-vitals-by-page`](./web-vitals-by-page).

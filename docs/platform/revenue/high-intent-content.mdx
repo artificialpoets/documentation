@@ -1,8 +1,48 @@
 ---
-title: High Intent Content
-description: Placeholder public docs page for the Revenue high-intent content area.
+title: High-Intent Content
+description: How to find the pages most likely to convert — combining search-intent classification with engagement signals to surface conversion-ready inventory.
 ---
 
-This page is a placeholder for the Revenue high-intent content docs.
+**High-intent content** is the subset of the catalog that consistently attracts users with commercial or transactional intent and holds their attention. These are the pages worth investing in: refresh, expansion, cross-linking, and direct conversion paths land their largest returns when they land on this inventory.
 
-Content will be added later.
+### The two signals
+
+The Platform combines two independent signals into a single ranking.
+
+**Signal one — intent.** The [`../content/search-intent`](../content/search-intent) classification applied to the queries that lead users to each page. Pages whose inbound query distribution skews commercial or transactional are inherently closer to a conversion than pages whose inbound queries are purely informational.
+
+**Signal two — engagement.** Standard engagement metrics applied to the page's actual sessions:
+
+| Engagement signal | What a high-intent page looks like |
+|-------------------|------------------------------------|
+| Bounce rate | Low — users are not abandoning immediately |
+| Average session duration | High — users are reading carefully |
+| Pageviews per session | At or above average — users follow internal links |
+| Scroll depth p75 | Deep into the page — users are completing the content |
+
+A page can rank high on intent but low on engagement (users arrive ready to convert but the page fails to hold them), or high on engagement but low on intent (users read deeply but were never going to convert). Neither is high-intent content. The combination is what the report surfaces.
+
+### How the ranking works
+
+For each page in the catalog, the Platform computes:
+
+1. The share of inbound queries classified as commercial or transactional in the selected window.
+2. An engagement composite score derived from the four engagement signals above, normalized to the site's distribution.
+3. A combined score weighting intent and engagement evenly by default.
+
+Pages are sorted by the combined score. The report surfaces the top inventory, plus the pageview volume each receives so traffic-weighted prioritization is possible.
+
+### When to act on this list
+
+Two situations make this list immediately actionable.
+
+- **Editorial refresh planning.** Pages on the high-intent list that haven't been updated in 12+ months are the highest-leverage refresh candidates — they already convert traffic to attention, and a refresh typically lifts both rankings and on-page conversion.
+- **Conversion path placement.** Calls to action, paid-product pitches, and lead-capture forms placed on high-intent content pages outperform the same placements on low-intent inventory by a meaningful multiple. Use this list to identify the placements.
+
+### What this list is not
+
+This view is not a list of pages that have converted historically — that's a different report tied to conversion events, which the Revenue section reports separately. This is a list of pages whose audience and behavior **look like** conversion-ready audience and behavior. The two often overlap but are not the same.
+
+### Relationship to journey optimization
+
+Journey optimization tells you **where** in the journey conversion fails. High-intent content tells you **which pages** to place where you need to fix it. The two reports are designed to be read together. See [`./journey-optimization`](./journey-optimization) for the journey-level view.

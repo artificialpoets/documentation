@@ -1,8 +1,42 @@
 ---
-title: Search
-description: Placeholder public docs page for the Engagement search area.
+title: Site Search
+description: How the Platform tracks on-site search — the events captured, the funnel from query to click, and what the resulting data reveals about content gaps.
 ---
 
-This page is a placeholder for the Engagement search docs.
+**Site search** is the user telling you, in their own words, what they came for. The Platform captures the full search funnel on the site and surfaces the patterns that point to content gaps, ranking issues, and search-UX friction.
 
-Content will be added later.
+### Events captured
+
+The site-search reports are powered by two PostHog events emitted by the search widget on each tracked site.
+
+| Event | When it fires | Key properties |
+|-------|---------------|----------------|
+| `$search_performed` | A user submits a query | `query`, `resultCount`, `device_type` |
+| `$search_result_clicked` | A user clicks a result | `query`, `result_url`, `result_position` |
+
+Together these two events define the funnel: submission → result presented → click. The Platform also stores the empty-result subset of `$search_performed` separately so the no-result rate can be reported without joining at query time.
+
+### What the reports show
+
+The Search subsection of Engagement breaks the funnel into the metrics that matter for editorial planning.
+
+| Report | What it reveals |
+|--------|-----------------|
+| [Click-through rate](./ctr) | The share of searches that produced at least one click — the basic relevance signal |
+| [Search funnel conversion rate](./search-funnel-conversion-rate) | The share of searching users who completed the search → click step |
+| [Empty-result searches](./empty-result-searches) | Queries that returned nothing — direct evidence of catalog gaps |
+| Top queries | The most-searched terms, with their CTR and empty-result rate alongside |
+
+The top-queries view is the workhorse. Sorting by volume surfaces what users want; sorting by empty-result rate surfaces what they want and can't find; sorting by low CTR surfaces what they find but don't trust.
+
+### What the data answers
+
+Three editorial questions search analytics answer directly.
+
+- **Where is the catalog thin?** Recurring empty-result queries name the topics the site doesn't cover but visitors expect it to.
+- **Where is the search experience broken?** Queries with healthy result counts but low CTR point to ranking, snippet, or UX problems — the results exist but users don't click them.
+- **What language do users actually use?** Search logs are the most honest source of audience vocabulary. They are useful inputs for headline writing, SEO keyword research, and taxonomy decisions.
+
+### When to investigate further
+
+A 25%+ empty-result rate sustained over several days is a content-strategy signal — open the top empty queries and decide whether to commission content. A CTR below 25% with healthy result counts is a search-quality signal — open the top low-CTR queries and look at the snippets being returned.

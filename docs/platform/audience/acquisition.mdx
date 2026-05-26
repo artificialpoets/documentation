@@ -1,8 +1,48 @@
 ---
-title: Acquisition
-description: Placeholder public docs page for the Audience acquisition area.
+title: User Acquisition
+description: How the Platform measures where audiences come from — traffic channels, attribution windows, UTM parameters, and first-touch vs. last-touch credit.
 ---
 
-This page is a placeholder for the Audience acquisition docs.
+**User acquisition** in the Platform answers a single question: where did this audience come from? The Audience section breaks new and returning visitors down by acquisition source so you can see which channels deliver real reach versus which only deliver clicks.
 
-Content will be added later.
+### What the dashboard measures
+
+Each session arrives with an automatically assigned channel and a set of attribution properties captured at the session's first pageview. The dashboard aggregates those properties across the selected time window to produce the acquisition view.
+
+| Property | What it captures |
+|----------|------------------|
+| `$channel_type` | Standard channel classification (Organic Search, Direct, Referral, Paid, etc.) |
+| `$initial_referring_domain` | Domain of the first referrer in the session |
+| `utm_source`, `utm_medium`, `utm_campaign` | Campaign-level attribution tags from inbound URLs |
+| `$initial_pathname` | Landing page where the user first arrived |
+
+See [`./traffic-channel`](./traffic-channel) for the full channel taxonomy and how PostHog assigns each session a channel automatically.
+
+### First-touch vs. last-touch
+
+The dashboard reports **first-touch attribution by default** — the channel credited is the one that first introduced the user to the site. First-touch is the right lens for evaluating acquisition spend because it ignores re-engagement traffic that arrives only because the user already knows the brand.
+
+| Attribution model | Best for |
+|-------------------|----------|
+| First-touch | Evaluating which channels create new audience |
+| Last-touch | Evaluating which channels close conversions |
+
+Last-touch views are available on the journey and conversion reports under the Revenue section, where the question shifts from "who introduced this user" to "what closed them."
+
+### UTM tags
+
+UTM parameters give marketers manual control over campaign attribution. The Platform reads the standard five tags on the first session and stores them as session properties.
+
+| UTM tag | Typical use |
+|---------|-------------|
+| `utm_source` | The publisher or platform (e.g. `google`, `newsletter`) |
+| `utm_medium` | The channel type (e.g. `cpc`, `email`, `social`) |
+| `utm_campaign` | The named campaign (e.g. `spring-launch`) |
+| `utm_term` | Paid-search keyword |
+| `utm_content` | Variant identifier for A/B testing |
+
+UTM tags only fire on the **first** pageview of a session. Subsequent navigation inside the site preserves the original tags — internal links do not need (and should not have) UTM tags.
+
+### Sizing the audience
+
+Acquisition counts are reported alongside the standard audience-size metrics: [`./unique-visitors`](./unique-visitors) for distinct users in the window, [`./dau`](./dau) for daily activity, and [`./mau`](./mau) for monthly reach. Pairing channel breakdown with these size metrics reveals not just where audiences come from, but how much volume each channel delivers and whether that audience returns.
